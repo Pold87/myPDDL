@@ -2,15 +2,12 @@ name: PDDL Syntax Highlighter
 markdown: redcarpet
 pygments: true
 
-baseurl: "http://pold87.github.io/ReadmeTest"
+baseurl: "http://pold87.github.io/sublime-pddl"
 
 navigation:
- - text: Home
-   title: Go to Homepage
-   url: /index.html
- - text: Blog
-   title: Newest developments
-   url: /blog.html
+ # - text: Blog
+ #   title: Newest developments
+ #   url: /blog.html
  - text: Download
    title: Download lastest Version of PDDL Syntax Highlighter
    url: /download.html
