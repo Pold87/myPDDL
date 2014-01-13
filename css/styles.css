@@ -18,3 +18,17 @@ body {
 .featuredImg {
 	margin-bottom: 15px;
 }
+
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+.carousel {
+	margin-bottom: 20px;
+}
+
+#disqus_thread {
+margin-top: 35px;
+}
