@@ -1,0 +1,28 @@
+<div class="modal fade" id="contact" role="dialog">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+
+			<div class="modal-header">
+
+				<h4>Contact PDDL</h4>
+
+			</div>
+			<div class="modal-body">
+				<p>This is just some text</p>
+
+			</div>
+
+			<div class="modal-footer">
+				<a class="btn btn-default" data-dismiss ="modal">Close</a>
+				<a class="btn btn-primary" data-dismiss ="modal">OK</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
