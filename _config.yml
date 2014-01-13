@@ -2,7 +2,7 @@ name: PDDL Syntax Highlighter
 markdown: redcarpet
 pygments: true
 
-baseurl: "/sublime-pddl"
+baseurl: "http://pold87.github.io/sublime-pddl"
 
 navigation:
  # - text: Blog
