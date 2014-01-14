@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog aria-labelledby="PDDL Online Editor" aria-hidden="true"">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="PDDL Online Editor" aria-hidden="true">
 
 	<div class="modal-dialog">
 
@@ -19,7 +19,7 @@
 			</div>
 
 			<div class="modal-footer">
-				<a class="btn btn-danger"data-dismiss ="modal">Go back</a>
+				<a class="btn btn-danger" data-dismiss ="modal">Go back</a>
 				<a href="{{ site.baseurl }}/editor.html" class="btn btn-success">PDDL Online Editor</a>
 
 			</div>

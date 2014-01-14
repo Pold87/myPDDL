@@ -8,7 +8,7 @@
 
       <li class="{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}last{% endif %}">
 
-        <a class="{{ current }}" {% unless link.options  %}href="{{ site.baseurl }}{{ link.url }}"{% endunless %}{% if link.options%}href='#'{% endif %} title="{{ link.title }}"{{ link.options }}><span class="{{ link.symbol }}"></span> {{ link.text }}</a>
+        <a class="{{ current }}" {% unless link.options  %}href="{{ site.baseurl }}{{ link.url }}"{% endunless %}{% if link.options%}href='#'{% endif %} title="{{ link.title }}" {{ link.options }}><span class="{{ link.symbol }}"></span> {{ link.text }}</a>
       </li>
     {% endfor %}
   </ul>
