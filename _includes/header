@@ -1,7 +1,9 @@
 
 <div class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
-		<a href="index.html" class="navbar-brand">Sublime PDDL - Syntax Highlighter and Snippets</a>
+		<a href="index.html" class="navbar-brand">
+			<span class="glyphicon glyphicon-home"></span> Sublime PDDL - Syntax Highlighter and Snippets
+		</a>
 
 		<button class="navbar-toggle" data-toggle ="collapse" data-target=".navHeaderCollapse">
 			<span class="icon-bar"></span>

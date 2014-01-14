@@ -11,12 +11,17 @@ navigation:
  - text: Download
    title: Download lastest Version of PDDL Syntax Highlighter
    url: /download.html
+   symbol: glyphicon glyphicon-circle-arrow-down
  - text: Doc
    title: Read the Manual
    url: /doc.html
+   symbol: glyphicon glyphicon-file
  - text: Online Editor
-   title: Open a PDDL Online Editor
-   url: /editor-info.html
+   title: Open the PDDL Online Editor
+   url:
+   symbol: glyphicon glyphicon-edit
+   options: data-toggle="modal" data-target="#myModal"
  - text: About
    title: About Me
    url: /about.html
+   symbol: glyphicon glyphicon-globe

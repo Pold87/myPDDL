@@ -3,23 +3,11 @@
 <head>
 	<title>{% if page.title %} {{ page.title }} | {% endif %} PDDL</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/spacelab-bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-amelia.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
-
-	<!-- For Ace -->
-	<style type="text/css" media="screen">
-    #editor { 
-        position: absolute;
-        top: 50px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-	</style>
-	<!-- For Ace -->
 </head>
 <body>
-
 	<!-- Navigation bar -->
 	{% include header %}
 
@@ -31,7 +19,6 @@
 	<!-- Footer -->
 	<!-- {% include footer %} -->
 
-	<!-- Modal for Contact -->
 	{% include myModal %}
 
 	<!-- JS Plugins -->
