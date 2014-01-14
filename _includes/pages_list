@@ -8,7 +8,7 @@
 
       <li class="{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}last{% endif %}">
 
-        <a class="{{ current }}" {% if link.options != '' %}href="{{ site.baseurl }}{{ link.url }}"{% endif %} title="{{ link.title }}"{{ link.options }}><span class="{{ link.symbol }}"></span> {{ link.text }}</a>
+        <a class="{{ current }}" {% if link.options == '' %}href="{{ site.baseurl }}{{ link.url }}"{% endif %} title="{{ link.title }}"{{ link.options }}><span class="{{ link.symbol }}"></span> {{ link.text }}</a>
       </li>
     {% endfor %}
   </ul>
