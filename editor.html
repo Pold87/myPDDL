@@ -1,0 +1,26 @@
+---
+layout: default
+title: Editor
+---
+
+<div id="editor" class="">function foo(items) {
+	var x = "All this is syntax highlighted";
+	return x;
+}</div>
+
+<script src="js/require.js"></script> 
+<script>
+  require.config({paths: {
+    ace: "js/ace/lib/ace"
+  }})
+  require([    
+    'ace/ace'
+  ], function(ace) {
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/pddl");
+
+  })
+ 
+</script> 
