@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% if page.title %} {{ page.title }} | {% endif %} PDDL</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-amelia.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<!-- Navigation bar -->
+	{% include header %}
+
+	<!-- Content -->
+	<div class="container center">
+		{{ content }}
+	</div>
+
+	<!-- Footer -->
+	<!-- {% include footer %} -->
+
+	{% include myModal %}
+
+	<!-- JS Plugins -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</body>
+</html>

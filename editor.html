@@ -1,0 +1,67 @@
+---
+layout: default
+title: Editor
+---
+
+<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
+<div id="editor" class="">(define (domain domainName)
+
+	(:requirements 
+		:durative-actions
+		:equality
+		:negative-preconditions
+		:numeric-fluents
+		:object-fluents
+		:typing
+	)
+
+	(:types
+
+	)
+
+	(:constants
+
+	)
+
+  	(:predicates
+  	
+  	) 
+
+  	(:functions
+  
+	)
+
+ 	(:durative-action actionName
+		:parameters (?x - <objectType>)
+		:duration (= ?duration #duration)
+		:condition (at start <effects>)
+		:effect (at end <effects>))
+)
+}</div>
+
+<script src="js/require.js"></script> 
+<script>
+  require.config({paths: {
+    ace: "js/ace/lib/ace"
+  }})
+  require([    
+    'ace/ace'
+  ], function(ace) {
+
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/pddl");
+    document.getElementById('editor').style.fontSize='16px';
+
+  })
+ 
+</script> 

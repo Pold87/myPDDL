@@ -1,0 +1,38 @@
+html { 
+	overflow-y:scroll;
+}
+
+body {
+	margin-bottom: 80px;
+}
+
+.page-header {
+
+	margin-top: 0;
+}
+
+.page-body {
+	padding-top: 0;
+}
+
+.featuredImg {
+	margin-bottom: 15px;
+}
+
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+.carousel {
+	margin-bottom: 20px;
+}
+
+#disqus_thread {
+margin-top: 35px;
+}
+
+#me {
+	margin-top: 25px;
+}

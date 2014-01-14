@@ -1,0 +1,15 @@
+{% unless page.layout == 'front' %}
+  <ul class="navigation nav navbar-nav navbar-right">
+       {% assign url = page.url|remove:'index.html' %}
+        {% for link in site.navigation %}
+            {% assign state = '' %}
+            {% if page.url == link.url %}
+                {% assign state = 'active ' %}
+            {% endif %}
+            <li class="{{ state }}nav-item">
+                <a href="{% if page.url == link.url %}{{ site.baseurl }}{% else %}{{ site.baseurl }}{{ link.url }}{% endif %}" title="{{ link.title }}">{{ link.text }}</a>
+            </li>
+        {% endfor %}
+    {% endfor %}
+  </ul>
+{% endunless %}

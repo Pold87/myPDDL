@@ -1,0 +1,15 @@
+{% unless page.layout == 'front' %}
+  <ul class="navigation nav navbar-nav navbar-right">
+    {% for link in site.navigation %}
+      {% assign current = nil %}
+      {% if link.url contains page.url or page.url contains link.url %}
+        {% assign current = 'active' %}
+      {% endif %}
+
+      <li class="{% if forloop.first %}first{% endif %} {{ current }} {% if forloop.last %}last{% endif %}">
+
+        <a class="{{ current }}" href="{{ site.baseurl }}{{ link.url }}" title="{{ link.title }}"{{ link.options }}><span class="{{ link.symbol }}"></span> {{ link.text }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endunless %}

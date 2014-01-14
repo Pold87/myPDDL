@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Doc |  PDDL</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-amelia.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+	<!-- Navigation bar -->
+	
+<div class="navbar navbar-inverse navbar-static-top">
+	<div class="container">
+		<a href="index.html" class="navbar-brand">
+			<span class="glyphicon glyphicon-home"></span> Sublime PDDL - Syntax Highlighter and Snippets
+		</a>
+
+		<button class="navbar-toggle" data-toggle ="collapse" data-target=".navHeaderCollapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navHeaderCollapse">
+			
+  <ul class="navigation nav navbar-nav navbar-right">
+    
+      
+      
+
+      <li class="first  ">
+
+        <a class="" href="http://pold87.github.io/sublime-pddl/download.html" title="Download lastest Version of PDDL Syntax Highlighter"><span class="glyphicon glyphicon-circle-arrow-down"></span> Download</a>
+      </li>
+    
+      
+      
+        
+      
+
+      <li class=" active ">
+
+        <a class="active" href="http://pold87.github.io/sublime-pddl/doc.html" title="Read the Manual"><span class="glyphicon glyphicon-file"></span> Doc</a>
+      </li>
+    
+      
+      
+
+      <li class="  ">
+
+        <a class="" href="http://pold87.github.io/sublime-pddl" title="Open the PDDL Online Editor"data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span> Online Editor</a>
+      </li>
+    
+      
+      
+
+      <li class="  last">
+
+        <a class="" href="http://pold87.github.io/sublime-pddl/about.html" title="About Me"><span class="glyphicon glyphicon-globe"></span> About</a>
+      </li>
+    
+  </ul>
+
+		</div>
+	</div>
+</div>
+
+	<!-- Content -->
+	<div class="container center">
+		<h1 id="pddl-sublime-text-plugin">PDDL Sublime Text Plugin</h1>
+<h2 id="supported-filetypes">Supported filetypes</h2>
+<ul>
+    <li>.pddl</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>Simply place this repository into your Sublime text packages folder (Preferences -> Browse Packages...). You have two possibilities to do so:</p>
+<ul>
+<li><code>git clone https://github.com/Pold87/sublime-pddl.git PDDL</code> </li>
+    <li>Download the ZIP and unzip it to your packages folder. Thereby, please name the created folder PDDL.</li>
+</ul>
+<h2 id="usage">Usage</h2>
+<h3 id="enable-syntax-highlighting">Enable Syntax Highlighting</h3>
+<p>There are several ways to enable PDDL syntax highlighting:</p>
+<ul>
+    <li>Open a PDDL file (.pddl) in Sublime Text</li>
+    <li>Click the Plain Text label at the bottom right of the sublime text window and select PDDL</li>
+    <li>Show the Command Palette (press <code>Ctrl+Shift+P</code> in Windows / Linux or <code>Command+Shift+P</code> in Mac OS X) and choose <code>Set Syntax: PDDL</code>.</li>
+</ul>
+<h3 id="use-snippets">Use Snippets</h3>
+<p>This package contains some often used PDDL constructs. Try one of the following, to see how they work:</p>
+<ul>
+    <li>template: <code>domain</code>, <code>problem</code></li>
+    <li>types: <code>t1</code>, <code>t2</code>, <code>t3</code>, etc.</li>
+    <li>functions: <code>f1</code>, <code>f2</code>, <code>f3</code>, etc.</li>
+    <li>action: <code>action</code>, <code>durative-action</code></li>
+</ul>
+<h2 id="screenshots">Screenshots</h2>
+<p><img alt="alt text" src="https://raw.github.com/Pold87/ReadmeTest/master/Sunburst.png" title="á¹”DDL syntax highlighting - Theme: Sunburst" /></p>
+
+<!-- Disqus Plugin for discussion and comments -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'sublimepddl'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+        	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	</div>
+
+	<!-- Footer -->
+	<!-- 	<div class="navbar navbar-default navbar-fixed-bottom">
+		
+		<div class="container">
+			<p class="navbar-text pull-left">By
+				<a href="about.html">Volker Strobel</a></p>
+				<a href="https://github.com/Pold87/sublime-pddl" class="navbar-btn btn btn-primary pull-right">View Project on GitHub</a>
+			</div>
+
+		</div> -->
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog aria-labelledby="PDDL Online Editor" aria-hidden="true"">
+
+	<div class="modal-dialog">
+
+		<div class="modal-content">
+
+
+			<div class="modal-header">
+
+				<h4>Important - PDDL Online Editor</h4>
+
+			</div>
+
+			<div class="modal-body">
+				<h2>Please read before opening the editor</h2>
+				<p>The green link below will open the PDDL Online Editor so that you can see an example of the PDDL Syntax Highlighting. It was created with the <a href="http://ace.c9.io/">Ace code editor</a>. Simply paste in your code or write a new domain or problem from scratch. Although it is a fully functional code editor, the <a href="http://pold87.github.io/sublime-pddl/download.html">Package for Sublime Text</a> has many additional features.</p>
+				<p>Important: The editor could take some time to load. However, if it is still not loaded after a longer period of time, please refresh the editor page and make sure that JavaScript is enabled in your browser.</p>
+
+			</div>
+
+			<div class="modal-footer">
+				<a class="btn btn-danger"data-dismiss ="modal">Go back</a>
+				<a href="http://pold87.github.io/sublime-pddl/editor.html" class="btn btn-success">PDDL Online Editor</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+	<!-- JS Plugins -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+
+</body>
+</html>

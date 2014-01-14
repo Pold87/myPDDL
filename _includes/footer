@@ -1,0 +1,9 @@
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		
+		<div class="container">
+			<p class="navbar-text pull-left">By
+				<a href="about.html">Volker Strobel</a></p>
+				<a href="https://github.com/Pold87/sublime-pddl" class="navbar-btn btn btn-primary pull-right">View Project on GitHub</a>
+			</div>
+
+		</div>
