@@ -3,28 +3,18 @@
 <head>
 	<title> Editor |  PDDL</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/spacelab-bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-amelia.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
-
-	<!-- For Ace -->
-	<style type="text/css" media="screen">
-    #editor { 
-        position: absolute;
-        top: 50px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-	</style>
-	<!-- For Ace -->
 </head>
 <body>
-
 	<!-- Navigation bar -->
 	
 <div class="navbar navbar-inverse navbar-static-top">
 	<div class="container">
-		<a href="index.html" class="navbar-brand">Sublime PDDL - Syntax Highlighter and Snippets</a>
+		<a href="index.html" class="navbar-brand">
+			<span class="glyphicon glyphicon-home"></span> Sublime PDDL - Syntax Highlighter and Snippets
+		</a>
 
 		<button class="navbar-toggle" data-toggle ="collapse" data-target=".navHeaderCollapse">
 			<span class="icon-bar"></span>
@@ -40,28 +30,32 @@
       
 
       <li class="first  ">
-        <a class="" href="/sublime-pddl/download.html" title="Download lastest Version of PDDL Syntax Highlighter">Download</a>
+
+        <a class="" href="/sublime-pddl/download.html" title="Download lastest Version of PDDL Syntax Highlighter"><span class="glyphicon glyphicon-circle-arrow-down"></span> Download</a>
       </li>
     
       
       
 
       <li class="  ">
-        <a class="" href="/sublime-pddl/doc.html" title="Read the Manual">Doc</a>
+
+        <a class="" href="/sublime-pddl/doc.html" title="Read the Manual"><span class="glyphicon glyphicon-file"></span> Doc</a>
       </li>
     
       
       
 
       <li class="  ">
-        <a class="" href="/sublime-pddl/editor-info.html" title="Open a PDDL Online Editor">Online Editor</a>
+
+        <a class="" href="/sublime-pddl" title="Open the PDDL Online Editor"data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span> Online Editor</a>
       </li>
     
       
       
 
       <li class="  last">
-        <a class="" href="/sublime-pddl/about.html" title="About Me">About</a>
+
+        <a class="" href="/sublime-pddl/about.html" title="About Me"><span class="glyphicon glyphicon-globe"></span> About</a>
       </li>
     
   </ul>
@@ -72,7 +66,17 @@
 
 	<!-- Content -->
 	<div class="container center">
-		<div id="editor" class="">(define (domain domainName)
+		<style type="text/css" media="screen">
+    #editor { 
+        position: absolute;
+        top: 50px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+</style>
+
+<div id="editor" class="">(define (domain domainName)
 
 	(:requirements 
 		:durative-actions
@@ -137,8 +141,7 @@
 
 		</div> -->
 
-	<!-- Modal for Contact -->
-	<div class="modal fade" id="contact" role="dialog">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog aria-labelledby="PDDL Online Editor" aria-hidden="true"">
 
 	<div class="modal-dialog">
 
@@ -147,17 +150,20 @@
 
 			<div class="modal-header">
 
-				<h4>Contact PDDL</h4>
+				<h4>Important - PDDL Online Editor</h4>
 
 			</div>
+
 			<div class="modal-body">
-				<p>This is just some text</p>
+				<h2>Please read before opening the editor</h2>
+				<p>The green link below will open the PDDL Online Editor so that you can see an example of the PDDL Syntax Highlighting. It was created with the <a href="http://ace.c9.io/">Ace code editor</a>. Simply paste in your code or write a new domain or problem from scratch. Although it is a fully functional code editor, the <a href="/sublime-pddl/download.html">Package for Sublime Text</a> has many additional features.</p>
+				<p>Important: The editor could take some time to load. However, if it is still not loaded after a longer period of time, please refresh the editor page and make sure that JavaScript is enabled in your browser.</p>
 
 			</div>
 
 			<div class="modal-footer">
-				<a class="btn btn-default" data-dismiss ="modal">Close</a>
-				<a class="btn btn-primary" data-dismiss ="modal">OK</a>
+				<a class="btn btn-danger"data-dismiss ="modal">Go back</a>
+				<a href="/sublime-pddl/editor.html" class="btn btn-success">PDDL Online Editor</a>
 
 			</div>
 
