@@ -13,7 +13,3 @@
     {% endfor %}
   </ul>
 {% endunless %}
-
-
-
-{% if link.options != ''}
