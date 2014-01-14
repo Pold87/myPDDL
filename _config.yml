@@ -14,6 +14,9 @@ navigation:
  - text: Doc
    title: Read the Manual
    url: /doc.html
+ - text: Online Editor
+   title: Open a PDDL Online Editor
+   url: /editor-info.html
  - text: About
    title: About Me
    url: /about.html

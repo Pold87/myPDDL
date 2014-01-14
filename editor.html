@@ -2,10 +2,39 @@
 layout: default
 title: Editor
 ---
+<div id="editor" class="">(define (domain domainName)
 
-<div id="editor" class="">function foo(items) {
-	var x = "All this is syntax highlighted";
-	return x;
+	(:requirements 
+		:durative-actions
+		:equality
+		:negative-preconditions
+		:numeric-fluents
+		:object-fluents
+		:typing
+	)
+
+	(:types
+
+	)
+
+	(:constants
+
+	)
+
+  	(:predicates
+  	
+  	) 
+
+  	(:functions
+  
+	)
+
+ 	(:durative-action actionName
+		:parameters (?x - <objectType>)
+		:duration (= ?duration #duration)
+		:condition (at start <effects>)
+		:effect (at end <effects>))
+)
 }</div>
 
 <script src="js/require.js"></script> 
@@ -20,6 +49,7 @@ title: Editor
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/pddl");
+    document.getElementById('editor').style.fontSize='16px';
 
   })
  
