@@ -27,6 +27,8 @@
 			<string>comment.line.semicolon.pddl</string>
 		</dict>
 		<dict>
+			<key>comment</key>
+			<string>add numbers !!</string>
 			<key>match</key>
 			<string>\?[A-Za-z]+</string>
 			<key>name</key>
@@ -40,13 +42,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)</string>
-			<key>name</key>
-			<string>keyword.other.pddl</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>:(requirements|types|constants|predicates|functions)</string>
+			<string>:(types|constants|predicates|functions|domain|objects|init|goal|constraints|metric|length)</string>
 			<key>name</key>
 			<string>storage.type.pddl</string>
 		</dict>
@@ -57,8 +53,10 @@
 			<string>support.function.pddl</string>
 		</dict>
 		<dict>
+			<key>comment</key>
+			<string>Remove brace or do sth that the brace isn't highlighted</string>
 			<key>match</key>
-			<string>(forall|\(at(\s+)|over)</string>
+			<string>\b(forall|(at\s+(start|end))|over)\b</string>
 			<key>name</key>
 			<string>support.other.pddl</string>
 		</dict>
@@ -76,7 +74,7 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>:(parameters|duration|condition|effect|precondition)</string>
+			<string>:(parameters|vars|duration|condition|effect|precondition)</string>
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
 		</dict>
@@ -92,7 +90,7 @@
 				</dict>
 			</dict>
 			<key>comment</key>
-			<string>domain/problem definition</string>
+			<string>domain/problem definition &lt;domain&gt; &lt;problem&gt; </string>
 			<key>end</key>
 			<string>\)</string>
 			<key>name</key>
@@ -123,9 +121,284 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\()(\b(?i:(domain|problem))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-|\!|\?)*)</string>
+					<string>(\()(\b(?i:(domain|problem))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-)*)</string>
 					<key>name</key>
 					<string>meta.function.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(requirements)))\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Requirements</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>keyword.other.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(types)))\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Types</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((\s*\w+\s*)+)(-)\s*(\w+)\s*</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(constants)))\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Constants</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((\s*\w+\s*)+)(-)\s*(\w+)\s*</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(predicates)))\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Predicates</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\((\w|\?)\s+   \)</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(functions)))\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Functions</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((\s*\w+\s*)+)(-)\s*(\w+)\s*</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(action)))\b</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Actions</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((\s*\w+\s*)+)(-)\s*(\w+)\s*</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\(:(\b(?i:(durative-action)))(\s*)((\w|\-|\!|\?)*)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>storage.type.pddl</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>Durative Actions</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>name</key>
+			<string>meta.type.pddl</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>4</key>
+						<dict>
+							<key>name</key>
+							<string>support.function.pddl</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>((\s*\w+\s*)+)(-)\s*(\w+)\s*</string>
+					<key>name</key>
+					<string>meta.keyword.pddl</string>
 				</dict>
 			</array>
 		</dict>
