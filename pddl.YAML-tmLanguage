@@ -7,172 +7,222 @@ uuid: 2aef09fc-d29e-4efd-bf1a-974598feb7a9
 
 patterns:
 
-- comment: "Comments beginning with ';'"
-  name: comment.line.semicolon.pddl
-  match: (;).*$\n?
-  captures:
-    '1': {name: punctuation.definition.comment.pddl}
-
-- name: variable.other.pddl
-  comment: "add numbers !!"
-  match: \?[A-Za-z]+
-
-- name: constant.numeric.pddl
-  match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
-
-- name: storage.type.pddl
-  match: :(types|constants|predicates|functions|domain|objects|init|goal|constraints|metric|length)
-
-- name: support.function.pddl
-  match: (assign|scale-up|scale-down|increase|decrease)
-
-- name: support.other.pddl
-  comment: "Remove brace or do sth that the brace isn't highlighted"
-  match: \b(forall|(at\s+(start|end))|over)\b
-
-- name: constant.language.pddl
-  match: (start|end|all)
-
-- name: keyword.operator.pddl
-  match: \b(?i:eq|neq|and|or)\b
-
-- name: keyword.operator.pddl
-  match: :(parameters|vars|duration|condition|effect|precondition)
+- include: '#predicate'
+- include: '#vars'
+- include: '#comments'
+- include: '#numbers'
+- include: '#keywords'
+- include: '#actions'
+- include: '#dp-definition'
+- include: '#requirements'
+- include: '#types'
+- include: '#constants'
 
 
-# TODO: domain problem as big framework
-- comment: "domain/problem definition <domain> <problem> "
-  name: meta.function.pddl
-  begin: \((\b(?i:define)\b)(\s+) #eventuell schon vorher matchen, da so erst nach Eingabe des Leerzeichens
-  end: '\)' # Paren after the domain/problem name.
-  beginCaptures:
-      '1': {name: storage.type.function-type.pddl}
-  patterns: 
-  - include: '$self'
-  - name: meta.function.pddl
-    match: (\()(\b(?i:(domain|problem))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-)*)
+repository:
+
+  vars:
+    match: \?(\w)+
+    name: variable.other.pddl
+
+
+  comments:
+    comment: "Comments beginning with ';'"
+    name: comment.line.semicolon.pddl
+    match: (;).*$\n?
     captures:
-      '2': {name: support.function.pddl} 
-      '5': {name: entity.name.class.pddl}
-      '8': {name: invalid.illegal.pddl}
+      '1': {name: punctuation.definition.comment.pddl}
 
 
-- comment: "Requirements"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(requirements)))\b'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       '1': {name: keyword.other.pddl}
-     match:  :(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)
+  numbers:
+    name: constant.numeric.pddl
+    match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
 
-- comment: "Types"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(types)))\b'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       #'1': {name: keyword.other.pddl}
-       #'2': {name: storage.type.pddl}
-       '3': {name: entity.name.function.pddl}
-       '4': {name: support.function.pddl}
-     match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
 
-- comment: "Constants"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(constants)))\b'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       '3': {name: entity.name.function.pddl}
-       '4': {name: support.function.pddl}
-     match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
+  keywords:
+    name: storage.type.pddl # TODO: UPDATE
+    match: :(domain|objects|init|goal|constraints|metric|length)
 
+
+  function-keywords:
+    name: support.function.pddl
+    match: (assign|scale-up|scale-down|increase|decrease)
+
+
+  other-keywords:
+    name: support.other.pddl
+    comment: "Remove parent or do sth that the paren isn't highlighted"
+    match: \b(forall|(at\s+(start|end))|over)\b
+
+
+  language-constants:
+    name: constant.language.pddl
+    match: (start|end|all)
+
+  logic-operators:
+    name: keyword.operator.pddl
+    match: \b(?i:eq|neq|and|or)\b
+
+
+  action-keywords: # Definitely update!
+    name: keyword.operator.pddl
+    match: :(parameters|vars|duration|condition|effect|precondition)
+
+    
+  # TODO: domain problem as big framework
+  dp-definition:  
+    patterns:
+    - comment: "domain/problem definition <domain> <problem> "
+      name: meta.function.pddl
+      begin: \((\b(?i:define)\b)(\s+) #eventuell schon vorher matchen, da so erst nach Eingabe des Leerzeichens
+      beginCaptures:
+        '1': {name: storage.type.function-type.pddl}
+      end: '\)' # Paren after the domain/problem name.
+      patterns: 
+        - name: meta.function.pddl
+          match: (\()(\b(?i:(domain|problem))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-)*)
+          captures:
+            '2': {name: support.function.pddl} 
+            '5': {name: entity.name.class.pddl}
+            '8': {name: invalid.illegal.pddl}
+
+
+  requirements:
+    patterns:
+      - comment: "Requirements"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(:(\b(?i:(requirements)))\b'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        end: '\)'
+        patterns:
+        - name: meta.keyword.pddl
+          captures:
+            '1': {name: keyword.other.pddl}
+          match:  :(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)
+
+  types:
+    patterns:
+      - comment: "Types"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(:(\b(?i:(types)))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              #'1': {name: keyword.other.pddl}
+              #'2': {name: storage.type.pddl}
+              '3': {name: entity.name.function.pddl}
+              '4': {name: support.function.pddl}
+            match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
+
+  constants:
+    patterns:
+      - comment: "Constants"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(:(\b(?i:(constants)))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              '3': {name: entity.name.function.pddl}
+              '4': {name: support.function.pddl}
+            match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
+
+
+
+  predicate:  # TODO NAME # TODO ADD CAPTURE GROUPS
+    name: storage.type.pddl
+    match: \(\w+(\s*\?(\w)+\s*-\s*(\w+))*\)
+
+
+  #TODO:
+  predicates:
+    patterns:
+      - comment: "Predicates"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(:(\b(?i:(predicates)))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              #'1': {name: keyword.other.pddl}
+              #'2': {name: storage.type.pddl}
+              '3': {name: entity.name.function.pddl}
+              '4': {name: support.function.pddl}
+            match:  \((\w|\?)\s+   \)
 
 # TODO:
-- comment: "Predicates"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(predicates)))\b'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       #'1': {name: keyword.other.pddl}
-       #'2': {name: storage.type.pddl}
-       '3': {name: entity.name.function.pddl}
-       '4': {name: support.function.pddl}
-     match:  \((\w|\?)\s+   \)
-
-# TODO:
-- comment: "Functions"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(functions)))\b'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       #'1': {name: keyword.other.pddl}
-       #'2': {name: storage.type.pddl}
-       '3': {name: entity.name.function.pddl}
-       '4': {name: support.function.pddl}
-     match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
-
+  functions:
+    patterns:
+      - comment: "Functions"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(:(\b(?i:(functions)))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              #'1': {name: keyword.other.pddl}
+              #'2': {name: storage.type.pddl}
+              '3': {name: entity.name.function.pddl}
+              '4': {name: support.function.pddl}
+            match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
+              
 
 #TODO:
-- comment: "Actions"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(action)))\b'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       #'1': {name: keyword.other.pddl}
-       #'2': {name: storage.type.pddl}
-       '3': {name: entity.name.function.pddl}
-       '4': {name: support.function.pddl}
-     match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
+  actions:
+    patterns:
+    - comment: "Actions"
+      name: meta.type.pddl # TODO: NAME
+      begin: '\(:(\b(?i:(action)))\b'
+      end: '\)'
+      beginCaptures:
+        '1': {name: storage.type.pddl}
+      patterns:
+      - name: meta.keyword.pddl
+        captures:
+          #'1': {name: keyword.other.pddl}
+          #'2': {name: storage.type.pddl}
+          '3': {name: entity.name.function.pddl}
+          '4': {name: support.function.pddl}
+        match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
 
 
 # TODO:
-- comment: "Durative Actions"
-  name: meta.type.pddl # TODO: NAME
-  begin: '\(:(\b(?i:(durative-action)))(\s*)((\w|\-|\!|\?)*)'
-  end: '\)'
-  beginCaptures:
-    '1': {name: storage.type.pddl}
-  patterns:
-   - name: meta.keyword.pddl
-     captures:
-       #'1': {name: keyword.other.pddl}
-       #'2': {name: storage.type.pddl}
-       '3': {name: entity.name.function.pddl}
-       '4': {name: support.function.pddl}
-     match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
-
-
+  durative-actions:
+    patterns:
+      - comment: "Durative Actions"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(:(\b(?i:(durative-action)))(\s*)((\w|\-|\!|\?)*)'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              #'1': {name: keyword.other.pddl}
+              #'2': {name: storage.type.pddl}
+              '3': {name: entity.name.function.pddl}
+              '4': {name: support.function.pddl}
+            match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*
 
 
 
 # NIX GUT:
-- comment: Durative Actions
-  name: meta.function.pddl
-  begin: '\(:(\b(?i:(durative-action|action)))(\s*)((\w|\-|\!|\?)*)'
-  beginCaptures:
-      '1': {name: storage.type.function-type.pddl}
-      '4': {name: entity.name.function.pddl}
-  end: '\n'
+  durative-actions-deprecated:
+    patterns:
+      - comment: Durative Actions
+        name: meta.function.pddl
+        begin: '\(:(\b(?i:(durative-action|action)))(\s*)((\w|\-|\!|\?)*)'
+        beginCaptures:
+          '1': {name: storage.type.function-type.pddl}
+          '4': {name: entity.name.function.pddl}
+        end: '\n'
