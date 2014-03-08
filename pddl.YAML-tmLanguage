@@ -26,7 +26,8 @@ patterns:
 #- include: '#predicate'
 - include: '#predicates'
 # - include: '#parameters'
-- include: '#functions'
+# - include: '#functions'
+- include: '#new-functions'
 - include: '#action-keyword'
 - include: '#action'
 - include: '#durative-action'
@@ -86,7 +87,7 @@ repository:
 
   pddl-expr:
     match: '(?!(\?.*))((?:\w|-)+)'
-    name: entity.name.tag.pddl
+    name: string.unquoted.pddl
 
   comment:
     comment: "Comments beginning with ';'"
@@ -163,13 +164,8 @@ repository:
               '3': {name: entity.name.function.pddl}
               '4': {name: entity.name.tag.pddl}
             match:  ((\s*\w+\s+)+)(-)\s+(\w+)\s*
-          - begin: '(-)\s+\((either)'
-            beginCaptures:      
-              '1': {name: entity.name.function.pddl}
-              '2': {name: storage.type.pddl}
-            patterns:
-              - include: '#pddl-expr'
-            end: '\)'
+          - include: '#either'
+          - include: '#pddl-expr'
 
   constant:
     patterns:
@@ -234,7 +230,7 @@ repository:
     
   new-function:
     patterns:
-      - begin: '\((\w+)'
+      - begin: '\(((?:\w|-)+)'
         end: '(\)\s+-\s+((?:\w|-)+))'
         endCaptures:
           '2': {name: storage.type.pddl}
@@ -245,7 +241,23 @@ repository:
           - name: meta.name.function.pddl
             captures:
               '1': {name: entity.name.function.pddl}
-            match: -\s+(\w+)
+            match: '-\s+((?:\w|-)+)'
+
+
+  function-with-either:
+    patterns:
+      - begin: '\((\w+)'
+        end: '(\)\s+-\s+((?:\w|-)+))|\)'
+        endCaptures:
+          '2': {name: storage.type.pddl}
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#variable'
+          - name: meta.name.function.pddl
+            captures:
+              '1': {name: entity.name.function.pddl}
+            match: '-\s+((?:\w|-)+)'
       
   predicates:
     patterns:
@@ -316,6 +328,39 @@ repository:
           '1': {name: storage.type.pddl}
         patterns:
           - include: '#new-function'
+          - begin: '\((either)'
+            beginCaptures:      
+              '1': {name: entity.name.function.pddl}
+              '2': {name: storage.type.pddl}
+            patterns:
+              - include: '#pddl-expr'
+            end: '\)'
+         #- include: '#function-with-either'
+
+  either:
+    patterns:
+      - begin: '(-)\s+\((either)'
+        beginCaptures:      
+          '1': {name: entity.name.function.pddl}
+          '2': {name: storage.type.pddl}
+        patterns:
+          - include: '#pddl-expr'
+        end: '\)'
+
+  new-functions:
+    patterns:
+      - comment: "Functions"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:functions))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#either'
+          - include: '#new-predicate'
+          - include: '#pddl-expr'
+
+
 
 # typed-variable-list:
 #   match: '\((((\?\w+)\s*?)*?-\s+(\w+)\s*)*\)'

@@ -64,7 +64,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#functions</string>
+			<string>#new-functions</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -446,6 +446,38 @@
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
 		</dict>
+		<key>either</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>(-)\s+\((either)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#pddl-expr</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>function</key>
 		<dict>
 			<key>captures</key>
@@ -478,6 +510,55 @@
 			<key>name</key>
 			<string>support.function.pddl</string>
 		</dict>
+		<key>function-with-either</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\((\w+)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(\)\s+-\s+((?:\w|-)+))|\)</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#variable</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>entity.name.function.pddl</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>-\s+((?:\w|-)+)</string>
+							<key>name</key>
+							<string>meta.name.function.pddl</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
 		<key>functions</key>
 		<dict>
 			<key>patterns</key>
@@ -504,6 +585,32 @@
 						<dict>
 							<key>include</key>
 							<string>#new-function</string>
+						</dict>
+						<dict>
+							<key>begin</key>
+							<string>\((either)</string>
+							<key>beginCaptures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>entity.name.function.pddl</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
+									<string>storage.type.pddl</string>
+								</dict>
+							</dict>
+							<key>end</key>
+							<string>\)</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#pddl-expr</string>
+								</dict>
+							</array>
 						</dict>
 					</array>
 				</dict>
@@ -595,7 +702,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((\w+)</string>
+					<string>\(((?:\w|-)+)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -630,9 +737,48 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>-\s+(\w+)</string>
+							<string>-\s+((?:\w|-)+)</string>
 							<key>name</key>
 							<string>meta.name.function.pddl</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>new-functions</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(\s*(?i:(:functions))\b</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Functions</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.type.pddl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#either</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#new-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#pddl-expr</string>
 						</dict>
 					</array>
 				</dict>
@@ -700,7 +846,7 @@
 			<key>match</key>
 			<string>(?!(\?.*))((?:\w|-)+)</string>
 			<key>name</key>
-			<string>entity.name.tag.pddl</string>
+			<string>string.unquoted.pddl</string>
 		</dict>
 		<key>precondition</key>
 		<dict>
@@ -957,30 +1103,12 @@
 							<string>meta.keyword.pddl</string>
 						</dict>
 						<dict>
-							<key>begin</key>
-							<string>(-)\s+\((either)</string>
-							<key>beginCaptures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>entity.name.function.pddl</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>storage.type.pddl</string>
-								</dict>
-							</dict>
-							<key>end</key>
-							<string>\)</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>#pddl-expr</string>
-								</dict>
-							</array>
+							<key>include</key>
+							<string>#either</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#pddl-expr</string>
 						</dict>
 					</array>
 				</dict>
