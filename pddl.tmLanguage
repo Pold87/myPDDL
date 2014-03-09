@@ -440,6 +440,70 @@
 							<key>include</key>
 							<string>#domain-name-in-define</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#number</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#function-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#other-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#language-constant</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#requirement</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#types</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#objects</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#constant</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#predicates</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#new-functions</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#durative-action</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#goal</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -1236,6 +1300,78 @@
 							<key>include</key>
 							<string>#problem-name-in-define</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#number</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#domain-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#inits</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#function-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#other-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#language-constant</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#requirement</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#types</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#objects</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#constant</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#predicates</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#new-functions</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#durative-action</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#goal</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -1246,7 +1382,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(\s*(?i:(domain))\b</string>
+					<string>\(\s*(?i:(problem))\b</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
