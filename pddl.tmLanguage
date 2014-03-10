@@ -20,75 +20,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#domain-name</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#inits</string>
-		</dict>
-		<dict>
-			<key>include</key>
 			<string>#comment</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#number</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#keyword</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#function-keyword</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#other-keyword</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#language-constant</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#requirement</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#types</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#objects</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#constant</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#predicates</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#new-functions</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#action-keyword</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#action</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#durative-action</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#goal</string>
 		</dict>
 	</array>
 	<key>repository</key>
@@ -155,7 +87,7 @@
 		<key>action-keyword</key>
 		<dict>
 			<key>match</key>
-			<string>:(?i:parameters|vars|precondition|effect)\b</string>
+			<string>:(?i:(parameters|vars|precondition|effect))\b</string>
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
 		</dict>
@@ -164,13 +96,42 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\(.*\)</string>
+					<key>begin</key>
+					<string>\(</string>
+					<key>end</key>
+					<string>\)</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>$self</string>
+							<string>#any-sexpr-other</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>(?:\s)*</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>any-sexpr-other</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
+						</dict>
+						<dict>
+							<key>match</key>
+							<string>(?:\s)*</string>
 						</dict>
 					</array>
 				</dict>
@@ -182,7 +143,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(((?:\w|-)+)</string>
+					<string>\(\s*((?:\w|-)+)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -217,7 +178,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(((?:\w|-)+)</string>
+					<string>\(\s*((?:\w|-)+)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -255,18 +216,10 @@
 		</dict>
 		<key>comment</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.comment.pddl</string>
-				</dict>
-			</dict>
 			<key>comment</key>
 			<string>Comments beginning with ';'</string>
 			<key>match</key>
-			<string>(;).*$\n?</string>
+			<string>;.*</string>
 			<key>name</key>
 			<string>comment.line.semicolon.pddl</string>
 		</dict>
@@ -276,7 +229,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|=|&gt;=|&lt;=|assign|increase|decrease|\+|-|\*|/)</string>
+					<string>\((and|or|eq|neq|not|=|&gt;=|&lt;=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -293,6 +246,10 @@
 					<string>meta.type.pddl</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#typed-variable-list</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#connected-predicate-other</string>
@@ -319,7 +276,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|=|&gt;=|&lt;=|assign|increase|decrease|\+|-|\*|/)</string>
+					<string>\((and|or|eq|neq|not|=|&gt;=|&lt;=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -334,6 +291,10 @@
 					<string>\)</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#typed-variable-list</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#connected-predicate</string>
@@ -419,7 +380,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((\b(?i:define)\b)(?!\s+\(problem)</string>
+					<string>\(\s*((?i:define))\b(?!\s+\(problem)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -429,7 +390,7 @@
 						</dict>
 					</dict>
 					<key>comment</key>
-					<string>domain/problem definition &lt;domain&gt; &lt;problem&gt; </string>
+					<string>domain definition </string>
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
@@ -438,31 +399,11 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#domain-name-in-define</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#comment</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#number</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#function-keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#other-keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#language-constant</string>
+							<string>#domain-name-in-define</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -471,10 +412,6 @@
 						<dict>
 							<key>include</key>
 							<string>#types</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#objects</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -490,31 +427,23 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#action-keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#action</string>
 						</dict>
 						<dict>
 							<key>include</key>
 							<string>#durative-action</string>
 						</dict>
-						<dict>
-							<key>include</key>
-							<string>#goal</string>
-						</dict>
 					</array>
 				</dict>
 			</array>
 		</dict>
-		<key>domain-name</key>
+		<key>domain-name-in-define</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(\s*(?i:(:domain))\b</string>
+					<string>\(\s*(?i:(domain))\b</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -539,7 +468,7 @@
 							<key>match</key>
 							<string>(\s+(?:\w|-)+){2,}</string>
 							<key>name</key>
-							<string>invalid.illegal.pdd</string>
+							<string>invalid.illegal.pddl</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -549,13 +478,13 @@
 				</dict>
 			</array>
 		</dict>
-		<key>domain-name-in-define</key>
+		<key>domain-name-in-problem</key>
 		<dict>
 			<key>patterns</key>
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(\s*(?i:(domain))\b</string>
+					<string>\(\s*(?i:(:domain))\b</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -635,7 +564,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#action-keyword</string>
+							<string>#durativ-action-keyword</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -652,7 +581,7 @@
 		<key>durative-action-keyword</key>
 		<dict>
 			<key>match</key>
-			<string>:(?i:parameters|vars|duration|condition|effect)\b</string>
+			<string>:(?i:(parameters|vars|duration|condition|effect))\b</string>
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
 		</dict>
@@ -690,28 +619,52 @@
 		</dict>
 		<key>function</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>2</key>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>name</key>
-					<string>variable.other.pddl</string>
+					<key>begin</key>
+					<string>\(\s*((?:\w|-)+)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>(\)\s+-\s+((?:\w|-)+))</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#variable</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>entity.name.function.pddl</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>-\s+((?:\w|-)+)</string>
+							<key>name</key>
+							<string>meta.name.function.pddl</string>
+						</dict>
+					</array>
 				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.pddl</string>
-				</dict>
-				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.pddl</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>\(\w+(\s+(\?\w+\s*)+(-\s+(\w+))?)*\)\s+-\s+(\w+)</string>
-			<key>name</key>
-			<string>meta.type.pddl</string>
+			</array>
 		</dict>
 		<key>function-keyword</key>
 		<dict>
@@ -794,7 +747,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#new-function</string>
+							<string>#function</string>
 						</dict>
 						<dict>
 							<key>begin</key>
@@ -875,7 +828,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(((?:\w|-)+)</string>
+					<string>\(\s*((?:\w|-)+)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -896,6 +849,10 @@
 							<key>include</key>
 							<string>#number</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#init-predicate-other</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -906,7 +863,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\(((?:\w|-)+)</string>
+					<string>\(\s*((?:\w|-)+)</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -977,7 +934,7 @@
 		<key>keyword</key>
 		<dict>
 			<key>match</key>
-			<string>:(objects|constraints|metric|length)</string>
+			<string>:(constraints|metric|length)</string>
 			<key>name</key>
 			<string>storage.type.pddl</string>
 		</dict>
@@ -987,55 +944,6 @@
 			<string>(start|end|all)</string>
 			<key>name</key>
 			<string>constant.language.pddl</string>
-		</dict>
-		<key>new-function</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>begin</key>
-					<string>\(((?:\w|-)+)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.pddl</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>(\)\s+-\s+((?:\w|-)+))</string>
-					<key>endCaptures</key>
-					<dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.pddl</string>
-						</dict>
-					</dict>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#variable</string>
-						</dict>
-						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>entity.name.function.pddl</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>-\s+((?:\w|-)+)</string>
-							<key>name</key>
-							<string>meta.name.function.pddl</string>
-						</dict>
-					</array>
-				</dict>
-			</array>
 		</dict>
 		<key>new-functions</key>
 		<dict>
@@ -1066,52 +974,11 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#new-predicate</string>
+							<string>#predicate</string>
 						</dict>
 						<dict>
 							<key>include</key>
 							<string>#pddl-expr</string>
-						</dict>
-					</array>
-				</dict>
-			</array>
-		</dict>
-		<key>new-predicate</key>
-		<dict>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>begin</key>
-					<string>\(((?:\w|-)+)</string>
-					<key>beginCaptures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>storage.type.pddl</string>
-						</dict>
-					</dict>
-					<key>end</key>
-					<string>\)</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>include</key>
-							<string>#variable</string>
-						</dict>
-						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>entity.name.function.pddl</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>-\s+((?:\w|-)+)</string>
-							<key>name</key>
-							<string>meta.name.function.pddl</string>
 						</dict>
 					</array>
 				</dict>
@@ -1195,7 +1062,7 @@
 		<key>pddl-expr</key>
 		<dict>
 			<key>match</key>
-			<string>(?!(\?.*))((?:\w|-)+)</string>
+			<string>(?:^|\s+)([a-zA-Z](?:\w|-|_)*)</string>
 			<key>name</key>
 			<string>string.unquoted.pddl</string>
 		</dict>
@@ -1215,28 +1082,44 @@
 		</dict>
 		<key>predicate</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>name</key>
-					<string>storage.type.pddl</string>
+					<key>begin</key>
+					<string>\(\s*((?:\w|-)+)</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#variable</string>
+						</dict>
+						<dict>
+							<key>captures</key>
+							<dict>
+								<key>1</key>
+								<dict>
+									<key>name</key>
+									<string>entity.name.function.pddl</string>
+								</dict>
+							</dict>
+							<key>match</key>
+							<string>-\s+((?:\w|-)+)</string>
+							<key>name</key>
+							<string>meta.name.function.pddl</string>
+						</dict>
+					</array>
 				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.other.pddl</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.pddl</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(?:\((\w+)|(?!^)\G)(?:(?=(?:(?!\(\w+).)*\))[^?\w])*(?:(\?\w+)|(\w+)|\))</string>
-			<key>name</key>
-			<string>meta.type.pddl</string>
+			</array>
 		</dict>
 		<key>predicates</key>
 		<dict>
@@ -1263,7 +1146,7 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#new-predicate</string>
+							<string>#predicate</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1289,7 +1172,7 @@
 						</dict>
 					</dict>
 					<key>comment</key>
-					<string>domain/problem definition &lt;domain&gt; &lt;problem&gt; </string>
+					<string>problem definition</string>
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
@@ -1298,23 +1181,15 @@
 					<array>
 						<dict>
 							<key>include</key>
-							<string>#problem-name-in-define</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#comment</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#number</string>
+							<string>#problem-name-in-define</string>
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#domain-name</string>
+							<string>#domain-name-in-problem</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1322,51 +1197,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#function-keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#other-keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#language-constant</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#requirement</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#types</string>
-						</dict>
-						<dict>
-							<key>include</key>
 							<string>#objects</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#constant</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#predicates</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#new-functions</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#action-keyword</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#action</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#durative-action</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1441,18 +1272,10 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>captures</key>
-							<dict>
-								<key>0</key>
-								<dict>
-									<key>name</key>
-									<string>keyword.other.pddl</string>
-								</dict>
-							</dict>
 							<key>match</key>
-							<string>:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)</string>
+							<string>:(?i:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs))\b</string>
 							<key>name</key>
-							<string>meta.keyword.pddl</string>
+							<string>keyword.other.pddl</string>
 						</dict>
 					</array>
 				</dict>
@@ -1528,21 +1351,16 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
-									<string>string.unquoted.pddl</string>
-								</dict>
-								<key>3</key>
-								<dict>
-									<key>name</key>
 									<string>entity.name.function.pddl</string>
 								</dict>
-								<key>4</key>
+								<key>2</key>
 								<dict>
 									<key>name</key>
 									<string>entity.name.tag.pddl</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>((\s*\w+\s+)+)(-)\s+(\w+)\s*</string>
+							<string>(-)\s+((?:\w|-)+)\s*</string>
 							<key>name</key>
 							<string>meta.keyword.pddl</string>
 						</dict>
@@ -1561,7 +1379,7 @@
 		<key>variable</key>
 		<dict>
 			<key>match</key>
-			<string>\?((?:\w|-)+)</string>
+			<string>(?:^|\s+)(\?[a-zA-Z](?:\w|-|_)*)</string>
 			<key>name</key>
 			<string>keyword.other.pddl</string>
 		</dict>

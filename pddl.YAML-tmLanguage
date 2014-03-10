@@ -12,82 +12,100 @@ patterns:
 
 - include: '#domain'
 - include: '#problem'
-- include: '#domain-name'
-- include: '#inits'
 - include: '#comment'
-- include: '#number'
-- include: '#keyword'
-- include: '#function-keyword'
-- include: '#other-keyword'
-- include: '#language-constant'
-# - include: '#logic-operator'
-- include: '#requirement'
-- include: '#types'
-- include: '#objects'
-- include: '#constant'
-#- include: '#predicate'
-- include: '#predicates'
-# - include: '#parameters'
-# - include: '#functions'
-- include: '#new-functions'
-- include: '#action-keyword'
-- include: '#action'
-- include: '#durative-action'
-- include: '#goal'
-#- include: '#typed-variable-list' 
-
 
 ##################
 ### Repository ###
 
 repository:
 
-       
-  # TODO: domains big framework
+
+##############################
+### General specifications ###
+##############################
+
+  built-in-var:
+    match: \?duration 
+    name: variable.language.pddl
+
+  variable:
+    match: '(?:^|\s+)(\?[a-zA-Z](?:\w|-|_)*)'
+    # name: variable.other.pddl
+    name: keyword.other.pddl # TODO: changeback again to variable.other.pddl
+    # this is just a dirty hack for highlighting
+
+  pddl-expr:
+    match: '(?:^|\s+)([a-zA-Z](?:\w|-|_)*)'
+    name: string.unquoted.pddl
+
+  comment:
+    comment: "Comments beginning with ';'"
+    name: comment.line.semicolon.pddl
+    match: ;.*
+
+  number:
+    name: constant.numeric.pddl
+    match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
+
+  keyword:
+    name: storage.type.pddl # TODO: UPDATE
+    match: :(constraints|metric|length)
+
+
+######################
+### Domain Helpers ###
+######################
+
+
+  function-keyword:
+    name: support.function.pddl
+    match: (assign|scale-up|scale-down|increase|decrease)
+
+
+  # TODO
+  other-keyword:
+    name: support.other.pddl
+    comment: "Remove parent or do sth that the paren isn't highlighted"
+    match: \b(forall|(at\s+(start|end))|over)\b
+
+
+  language-constant:
+    name: constant.language.pddl
+    match: (start|end|all)
+
+  action-keyword:
+    name: keyword.operator.pddl
+    match: :(?i:(parameters|vars|precondition|effect))\b
+
+  durative-action-keyword:
+    name: keyword.operator.pddl
+    match: :(?i:(parameters|vars|duration|condition|effect))\b
+
+
+
+#############################
+### Domain specifications ###
+#############################
+
   domain:  
     patterns:
-    - comment: "domain/problem definition <domain> <problem> "
+    - comment: "domain definition "
       name: meta.function.pddl
-      begin: '\((\b(?i:define)\b)(?!\s+\(problem)'
+      begin: '\(\s*((?i:define))\b(?!\s+\(problem)'
       beginCaptures:
         '1': {name: storage.type.function-type.pddl}
-      end: '\)' # Paren after the domain/problem name.
+      end: '\)'
       patterns: 
-        - include: '#domain-name-in-define'
-          
-
-        # Everything from here is inserted in the new structure
         - include: '#comment'
-        - include: '#number'
-        - include: '#keyword'
-        - include: '#function-keyword'
-        - include: '#other-keyword'
-        - include: '#language-constant'
-      # - include: '#logic-operator'
+        - include: '#domain-name-in-define'
         - include: '#requirement'
         - include: '#types'
-        - include: '#objects'
         - include: '#constant'
-      #- include: '#predicate'
         - include: '#predicates'
-          # - include: '#parameters'
-          # - include: '#functions'
         - include: '#new-functions'
-        - include: '#action-keyword'
         - include: '#action'
         - include: '#durative-action'
-        - include: '#goal'
-#- include: '#typed-variable-list' 
 
-          
-
-
-  #      - name: meta.function.pddl
-  #        match: '\s+(\()(\b(?i:(domain))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-)*)'
-  #        captures:
-  #          '2': {name: support.function.pddl} 
-  #          '5': {name: entity.name.class.pddl}
-  #          '8': {name: invalid.illegal.pddl}
 
   domain-name-in-define:
     patterns:
@@ -103,129 +121,6 @@ repository:
             match: (\s+(?:\w|-)+){2,}
           - include: '#pddl-expr'
 
-  problem-name-in-define:
-    patterns:
-      - comment: "Domain name in problem file"
-        name: meta.type.pddl # TODO: NAME
-        begin: '\(\s*(?i:(problem))\b'
-        end: '\)'
-        beginCaptures:
-          '1': {name: storage.type.pddl}
-        patterns:
-          - include: '#comment'
-          - name: invalid.illegal.pddl
-            match: (\s+(?:\w|-)+){2,}
-          - include: '#pddl-expr'
-
-# TODO:
-
-# THE PAREN IS NOT MATCHED
-
-
-
-  # TODO: problem as big framework
-  problem:  
-    patterns:
-    - comment: "domain/problem definition <domain> <problem> "
-      name: meta.function.pddl
-      begin: \((\b(?i:define)\b)
-      beginCaptures:
-        '1': {name: storage.type.function-type.pddl}
-      end: '\)' # Paren after the domain/problem name.
-      patterns: 
-        - include: '#problem-name-in-define'
-  #      - name: meta.function.pddl
-  #        match: '\s+(\()(\b(?i:(problem))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-)*)'
-  #        captures:
-  #          '2': {name: support.function.pddl} 
-  #          '5': {name: entity.name.class.pddl}
-  #          '8': {name: invalid.illegal.pddl}
-          # Everything from here is inserted in the new structure
-        - include: '#comment'
-        - include: '#number'
-        - include: '#keyword'
-        - include: '#domain-name'
-        - include: '#inits'
-        - include: '#function-keyword'
-        - include: '#other-keyword'
-        - include: '#language-constant'
-      # - include: '#logic-operator'
-        - include: '#requirement'
-        - include: '#types'
-        - include: '#objects'
-        - include: '#constant'
-      #- include: '#predicate'
-        - include: '#predicates'
-          # - include: '#parameters'
-          # - include: '#functions'
-        - include: '#new-functions'
-        - include: '#action-keyword'
-        - include: '#action'
-        - include: '#durative-action'
-        - include: '#goal'
-
-
-
-  built-in-var:
-    match: \?duration 
-    name: variable.language.pddl
-
-  variable:
-    match: \?((?:\w|-)+)
-    # name: variable.other.pddl
-    name: keyword.other.pddl # TODO: changeback again to variable.other.pddl
-    # this is just a dirty hack for highlighting
-
-  pddl-expr:
-    match: '(?!(\?.*))((?:\w|-)+)'
-    name: string.unquoted.pddl
-
-  comment:
-    comment: "Comments beginning with ';'"
-    name: comment.line.semicolon.pddl
-    match: (;).*$\n?
-    captures:
-      '1': {name: punctuation.definition.comment.pddl}
-
-
-  number:
-    name: constant.numeric.pddl
-    match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
-
-
-  keyword:
-    name: storage.type.pddl # TODO: UPDATE
-    match: :(objects|constraints|metric|length)
-
-
-  function-keyword:
-    name: support.function.pddl
-    match: (assign|scale-up|scale-down|increase|decrease)
-
-
-  other-keyword:
-    name: support.other.pddl
-    comment: "Remove parent or do sth that the paren isn't highlighted"
-    match: \b(forall|(at\s+(start|end))|over)\b
-
-
-  language-constant:
-    name: constant.language.pddl
-    match: (start|end|all)
-
-#  logic-operator:
-#    name: keyword.operator.pddl
-#    match: \b(?i:eq|neq|and|or)\b
-
-
-  action-keyword:
-    name: keyword.operator.pddl
-    match: :(?i:parameters|vars|precondition|effect)\b
-
-  durative-action-keyword:
-    name: keyword.operator.pddl
-    match: :(?i:parameters|vars|duration|condition|effect)\b
-
   requirement:
     patterns:
       - comment: "Requirement"
@@ -235,10 +130,8 @@ repository:
           '1': {name: storage.type.pddl}
         end: '\)'
         patterns:
-        - name: meta.keyword.pddl
-          captures:
-            '0': {name: keyword.other.pddl}
-          match:  :(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)
+        - name: keyword.other.pddl
+          match:  :(?i:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs))\b
 
   types:
     patterns:
@@ -251,10 +144,10 @@ repository:
         patterns:
           - name: meta.keyword.pddl
             captures:
-              '1': {name: string.unquoted.pddl}
-              '3': {name: entity.name.function.pddl}
-              '4': {name: entity.name.tag.pddl}
-            match:  ((\s*\w+\s+)+)(-)\s+(\w+)\s*
+              '1': {name: entity.name.function.pddl}
+              #'1': {name: string.unquoted.pddl}
+              '2': {name: entity.name.tag.pddl}
+            match:  (-)\s+((?:\w|-)+)\s*
           - include: '#either'
           - include: '#pddl-expr'
 
@@ -276,36 +169,9 @@ repository:
           - include: '#either'
           - include: '#pddl-expr'
 
-  objects:
+  predicate:
     patterns:
-      - comment: "Types"
-        name: meta.type.pddl # TODO: NAME
-        begin: '\(\s*(?i:(:objects))\b'
-        end: '\)'
-        beginCaptures:
-          '1': {name: storage.type.pddl}
-        patterns:
-          - name: meta.keyword.pddl
-            captures:
-              '1': {name: string.unquoted.pddl}
-              '3': {name: entity.name.function.pddl}
-              '4': {name: entity.name.tag.pddl}
-            match:  ((\s*\w+\s+)+)(-)\s+(\w+)\s*
-          - include: '#either'
-          - include: '#pddl-expr'
-
-  predicate:  # TODO NAME # TODO ADD CAPTURE GROUPS
-    name: meta.type.pddl
-    match: '(?:\((\w+)|(?!^)\G)(?:(?=(?:(?!\(\w+).)*\))[^?\w])*(?:(\?\w+)|(\w+)|\))'
-    captures:       
-      '1': {name: storage.type.pddl}
-      '2': {name: keyword.other.pddl}
-      '3': {name: entity.name.function.pddl}
-
-  
-  new-predicate:
-    patterns:
-      - begin: '\(((?:\w|-)+)'
+      - begin: '\(\s*((?:\w|-)+)'
         end: '\)'
         beginCaptures:
           '1': {name: storage.type.pddl}
@@ -318,17 +184,18 @@ repository:
 
   init-predicate:
     patterns:
-      - begin: '\(((?:\w|-)+)'
+      - begin: '\(\s*((?:\w|-)+)'
         end: '\)'
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
           - include: '#pddl-expr'
           - include: '#number'
+          - include: '#init-predicate-other'
 
   init-predicate-other:
     patterns:
-      - begin: '\(((?:\w|-)+)'
+      - begin: '\(\s*((?:\w|-)+)'
         end: '\)'
         beginCaptures:
           '1': {name: storage.type.pddl}
@@ -337,12 +204,9 @@ repository:
           - include: '#number'
           - include: '#init-predicate'
 
-# was in applied predicate:
-# (?!(not|and|eq|neq|or))
-
   applied-predicate-other:
     patterns:
-      - begin: '\(((?:\w|-)+)'
+      - begin: '\(\s*((?:\w|-)+)'
         end: '\)'
         beginCaptures:
           '1': {name: storage.type.pddl}
@@ -353,7 +217,7 @@ repository:
 
   applied-predicate:
     patterns:
-      - begin: '\(((?:\w|-)+)'
+      - begin: '\(\s*((?:\w|-)+)'
         end: '\)'
         beginCaptures:
           '1': {name: storage.type.pddl}
@@ -363,10 +227,9 @@ repository:
           - include: '#applied-predicate-other'
 
           
-    
-  new-function:
+  function:
     patterns:
-      - begin: '\(((?:\w|-)+)'
+      - begin: '\(\s*((?:\w|-)+)'
         end: '(\)\s+-\s+((?:\w|-)+))'
         endCaptures:
           '2': {name: storage.type.pddl}
@@ -404,31 +267,20 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
-          - include: '#new-predicate'
+          - include: '#predicate'
           - include: '#any-sexpr'
 
-  inits:
-    patterns:
-      - comment: "Initalized predicates"
-        name: meta.type.pddl # TODO: NAME
-        begin: '\(\s*(?i:(:init))\b'
-        end: '\)'
-        beginCaptures:
-          '1': {name: storage.type.pddl}
-        patterns:
-          - include: '#init-predicate'
-          - include: '#connected-predicate'
-          - include: '#any-sexpr'
 
   connected-predicate-other:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
         #name: string.unquoted.pddl # TODO: NAME
-        begin: '\((and|or|eq|neq|not|=|>=|<=|assign|increase|decrease|\+|-|\*|/)'
+        begin: '\((and|or|eq|neq|not|=|>=|<=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
         patterns:
+          - include: '#typed-variable-list'
           - include: '#connected-predicate'
           - include: '#applied-predicate'
           - include: '#variable'
@@ -438,25 +290,16 @@ repository:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
         name: meta.type.pddl # TODO: NAME
-        begin: '\((and|or|eq|neq|not|=|>=|<=|assign|increase|decrease|\+|-|\*|/)'
+        begin: '\((and|or|eq|neq|not|=|>=|<=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
         patterns:
+          - include: '#typed-variable-list'
           - include: '#connected-predicate-other'
-        #  - include: $self
           - include: '#applied-predicate'
           - include: '#variable'
           - include: '#pddl-expr'
-
-
-  function:  # TODO NAME # TODO ADD CAPTURE GROUPS
-    name: meta.type.pddl
-    match: '\(\w+(\s+(\?\w+\s*)+(-\s+(\w+))?)*\)\s+-\s+(\w+)'
-    captures:       
-      '2': {name: variable.other.pddl}
-      '3': {name: keyword.other.pddl}
-      '5': {name: keyword.other.pddl}
 
 # TODO:
   functions:
@@ -468,7 +311,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
-          - include: '#new-function'
+          - include: '#function'
           - begin: '\((either)'
             beginCaptures:      
               '1': {name: entity.name.function.pddl}
@@ -498,19 +341,8 @@ repository:
           '1': {name: storage.type.pddl}
         patterns:
           - include: '#either'
-          - include: '#new-predicate'
+          - include: '#predicate'
           - include: '#pddl-expr'
-
-
-
-# typed-variable-list:
-#   match: '\((((\?\w+)\s*?)*?-\s+(\w+)\s*)*\)'
-#   #match: \(((\?\w+\s+)+\s+(\w+))*\)
-#   name: meta.name.function.pddl
-#   captures: 
-#     #'0': {name: variable.other.pddl}
-#     '2': {name: keyword.other.pddl}            
-
 
   typed-variable-list:
     patterns:
@@ -531,14 +363,28 @@ repository:
         begin: ':precondition\s*'
         end: \b
 
-# TODO: begin - end and include everything, 
-# so things will get highlighted
+ # any-sexpr:
+ #   patterns:
+ #     - match: \(.*\)
+ #       patterns:
+ #         - include: '$self'
+
 
   any-sexpr:
     patterns:
-      - match: \(.*\)
+      - begin: '\('
+        end: '\)'
         patterns:
-          - include: '$self'
+          - include: '#any-sexpr-other'
+          - match:  (?:\s)*
+
+  any-sexpr-other:
+    patterns:
+      - begin: '\('
+        end: '\)'
+        patterns:
+          - include: '#any-sexpr'
+          - match: (?:\s)*
 
   action:
     patterns:
@@ -555,7 +401,6 @@ repository:
           - include: '#comment'
           - include: '#typed-variable-list'
           - include: '#action-keyword'
-         # - include: '#predicate'
           - include: '#built-in-var'
           - include: '#any-sexpr'
 
@@ -573,17 +418,29 @@ repository:
           - include: '#pddl-expr'
           - include: '#comment'
           - include: '#typed-variable-list'
-          - include: '#action-keyword'
-         # - include: '#predicate'
+          - include: '#durativ-action-keyword'
           - include: '#built-in-var'
           - include: '#any-sexpr'
 
+#######################
+### Problem Helpers ###
+#######################
 
-##############################
-### Problem specifications ###
-##############################
+  problem-name-in-define:
+    patterns:
+      - comment: "Domain name in problem file"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(problem))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#comment'
+          - name: invalid.illegal.pddl
+            match: (\s+(?:\w|-)+){2,}
+          - include: '#pddl-expr'
 
-  domain-name:
+  domain-name-in-problem:
     patterns:
       - comment: "Domain name in problem file"
         name: meta.type.pddl # TODO: NAME
@@ -593,19 +450,61 @@ repository:
           '1': {name: storage.type.pddl}
         patterns:
           - include: '#comment'
-          - name: invalid.illegal.pdd
+          - name: invalid.illegal.pddl
             match: (\s+(?:\w|-)+){2,}
           - include: '#pddl-expr'
 
-      
+##############################
+### Problem specifications ###
+##############################
 
-#  domain-name:
-#    match:  '\((?i:(:domain))(\s*)((?:\w|-)*)(\s*)((?:\w|-|\s)*)\)'
-#    captures:
-#      '1': {name: support.function.pddl} 
-#      '3': {name: entity.name.class.pddl}
-#      '5': {name: invalid.illegal.pddl}
 
+  problem:  
+    patterns:
+    - comment: "problem definition"
+      name: meta.function.pddl
+      begin: \((\b(?i:define)\b)
+      beginCaptures:
+        '1': {name: storage.type.function-type.pddl}
+      end: '\)' # Paren after the domain/problem name.
+      patterns: 
+        - include: '#comment'
+        - include: '#problem-name-in-define'
+        - include: '#domain-name-in-problem'
+        - include: '#inits'
+        - include: '#objects'
+        - include: '#goal'
+
+  objects:
+    patterns:
+      - comment: "Types"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:objects))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              '1': {name: string.unquoted.pddl}
+              '3': {name: entity.name.function.pddl}
+              '4': {name: entity.name.tag.pddl}
+            match:  ((\s*\w+\s+)+)(-)\s+(\w+)\s*
+          - include: '#either'
+          - include: '#pddl-expr'
+
+  inits:
+    patterns:
+      - comment: "Initalized predicates"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:init))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#init-predicate'
+          - include: '#connected-predicate'
+          - include: '#any-sexpr'
 
   goal:
     patterns:
@@ -623,35 +522,3 @@ repository:
 
 
 # TODO: Metric
-
-#  domain-name
-#    patterns:
-#      - name: meta.type.pddl
-#        begin: '\(:(\b(?i:(types)))\b'
-#        beginCaptures:
-#          '1': {name: storage.type.pddl}
-#        end: '\)'
-#        patterns:
-#          - name: 
-
-        
-
-
-
-
-#  objects:
-#    patterns:
-#    - comment: "Types"
-#      name: meta.type.pddl # TODO: NAME
-#      begin: '\(:(\b(?i:(types)))\b'
-#      end: '\)'
-#      beginCaptures:
-#        '1': {name: storage.type.pddl}
-#      patterns:
-#        - name: meta.keyword.pddl
-#          captures:
-#            #'1': {name: keyword.other.pddl}
-#            #'2': {name: storage.type.pddl}
-#            '3': {name: entity.name.function.pddl}
-#            '4': {name: support.function.pddl}
-#          match:  ((\s*\w+\s*)+)(-)\s*(\w+)\s*

@@ -3,16 +3,10 @@
 (define (domain ${1:domainName})
 
 	(:requirements 
-${2:		:durative-actions}
-${3:		:equality}
-${4:		:negative-preconditions}
-${5:		:numeric-fluents}
-${6:		:object-fluents}
-${7:		:typing}
-	)
-
+${2:       :typing})
+	
 	(:types
-
+		
 	)
 
 	(:constants
@@ -20,19 +14,17 @@ ${7:		:typing}
 	)
 
   	(:predicates
-  	
+
   	) 
 
   	(:functions
-  
-	)
 
- 	(:durative-action ${8:actionName}
-		:parameters (?${9:x} - ${10:<objectType>})
-		:duration (= ?duration ${11:#duration})
-		:condition (at start ${12:<effects>})
-		:effect (at end ${13:<effects>}))
-)
+  	)
+
+ 	(:action ${3:actionName}
+		:parameters ()
+		:precondition ()
+		:effect ()))
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>domain</tabTrigger>
