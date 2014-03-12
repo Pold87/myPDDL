@@ -1,10 +1,10 @@
 <snippet>
 	<content><![CDATA[
-(:durative-action ${1:actionName}
-	:parameters (?${2:x} - ${3:<objectType>})
-	:duration (= ?duration ${4:#duration})
-	:condition (at start ${5:<effects>})
-	:effect (at end ${6:<effects>}))
+(:durative-action ${1:action-name}
+	:parameters (?${2:x} - ${3:object})
+	:duration (= ?duration ${4:100})
+	:condition (at start ${5:()})
+	:effect (at end ${6:()}))
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>durative-action</tabTrigger>

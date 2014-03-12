@@ -1,6 +1,6 @@
 <snippet>
 	<content><![CDATA[
-${1:newType} - ${2:object}
+${1:subtype1} - ${2:object}
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>t1</tabTrigger>
