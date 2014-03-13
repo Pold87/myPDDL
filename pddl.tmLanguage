@@ -87,7 +87,7 @@
 		<key>action-keyword</key>
 		<dict>
 			<key>match</key>
-			<string>:(?i:(parameters|vars|precondition|effect))\b</string>
+			<string>:(?i:(parameters|vars|precondition|effect))(?!:|\?)\b</string>
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
 		</dict>
@@ -580,7 +580,7 @@
 		<key>durative-action-keyword</key>
 		<dict>
 			<key>match</key>
-			<string>:(?i:(parameters|vars|duration|condition|effect))\b</string>
+			<string>:(?i:(parameters|vars|duration|condition|effect))(?!:|\?)\b</string>
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
 		</dict>
@@ -1109,11 +1109,16 @@
 								<key>1</key>
 								<dict>
 									<key>name</key>
+									<string>constant.character.pddl</string>
+								</dict>
+								<key>2</key>
+								<dict>
+									<key>name</key>
 									<string>entity.name.function.pddl</string>
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>-\s+((?:\w|-)+)</string>
+							<string>(-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)</string>
 							<key>name</key>
 							<string>meta.name.function.pddl</string>
 						</dict>
@@ -1268,7 +1273,7 @@
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
-					<string>meta.type.pddl</string>
+					<string>requirement.meta.type.pddl</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1319,7 +1324,7 @@
 								</dict>
 							</dict>
 							<key>match</key>
-							<string>(-)\s+((?:\w|-)+)</string>
+							<string>(-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b</string>
 							<key>name</key>
 							<string>meta.name.function.pddl</string>
 						</dict>
@@ -1376,6 +1381,10 @@
 						<dict>
 							<key>include</key>
 							<string>#pddl-expr</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
 						</dict>
 					</array>
 				</dict>
