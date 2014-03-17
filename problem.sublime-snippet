@@ -1,0 +1,28 @@
+<snippet>
+	<content><![CDATA[
+(define (problem ${1:problemName})
+	
+	(:domain ${2:domainName})
+
+	(:objects
+		${3:objectName} - ${4:object}
+	)
+
+  	(:init
+  		;predicates
+  		(${5:predicateName} ${6:objectName} - ${7:object})
+  		
+  		;functions
+  		(= (${8:functionName} ${9:objectName}) ${10:functionValue})
+  	) 
+
+ 	(:goal
+
+ 	)
+)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>problem</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>text.pddl</scope>
+</snippet>
