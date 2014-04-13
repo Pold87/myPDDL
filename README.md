@@ -12,7 +12,7 @@ Installation
 ------------
 
 Simply place this repository into your Sublime text packages folder (Preferences \-\> Browse Packages...). You have two possibilities to do so:
-- *git clone https://github.com/Pold87/sublime-pddl.git PDDL* 
+- *git clone https://github.com/Pold87/myPDDL.git PDDL* 
 - Download the ZIP and unzip it to your packages folder. Thereby, please name the created folder PDDL.
 
 
