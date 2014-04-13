@@ -58,10 +58,10 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#pddl-expr</string>
+							<string>#action-name</string>
 						</dict>
 						<dict>
-							<key>include</key>
+							<key>du</key>
 							<string>#comment</string>
 						</dict>
 						<dict>
@@ -90,6 +90,19 @@
 			<string>:(?i:(parameters|vars|precondition|effect))(?!:|\?)\b</string>
 			<key>name</key>
 			<string>keyword.operator.pddl</string>
+		</dict>
+		<key>action-name</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>string.unquoted.action.pddl</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b</string>
 		</dict>
 		<key>any-sexpr</key>
 		<dict>
@@ -203,6 +216,10 @@
 							<key>include</key>
 							<string>#applied-predicate</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -229,7 +246,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|=|&gt;=|&lt;=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\b</string>
+					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -264,6 +281,10 @@
 						</dict>
 						<dict>
 							<key>include</key>
+							<string>#number</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#pddl-expr</string>
 						</dict>
 					</array>
@@ -276,7 +297,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|=|&gt;=|&lt;=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\b</string>
+					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -306,6 +327,10 @@
 						<dict>
 							<key>include</key>
 							<string>#variable</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#number</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -364,6 +389,49 @@
 						<dict>
 							<key>include</key>
 							<string>#pddl-expr</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>derived</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(\s*(?i:(:derived))\b</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Derived Predicate</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.type.pddl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#connected-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#applied-predicate</string>
 						</dict>
 					</array>
 				</dict>
@@ -596,7 +664,7 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>entity.name.function.pddl</string>
+							<string>constant.character.pddl</string>
 						</dict>
 						<key>2</key>
 						<dict>
@@ -615,6 +683,19 @@
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>error</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>invalid.illegal.pddl</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\s*((?:\w+|\?|_|-|\.))\s*</string>
 		</dict>
 		<key>function</key>
 		<dict>
@@ -887,6 +968,10 @@
 							<key>include</key>
 							<string>#init-predicate</string>
 						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
 					</array>
 				</dict>
 			</array>
@@ -943,6 +1028,57 @@
 			<string>(start|end|all)</string>
 			<key>name</key>
 			<string>constant.language.pddl</string>
+		</dict>
+		<key>metric</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(\s*(?i:(:metric))\b</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Metric</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.type.pddl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optimization</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#connected-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#applied-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#number</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<key>new-functions</key>
 		<dict>
@@ -1014,6 +1150,10 @@
 					<key>patterns</key>
 					<array>
 						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
 							<key>captures</key>
 							<dict>
 								<key>1</key>
@@ -1043,6 +1183,13 @@
 					</array>
 				</dict>
 			</array>
+		</dict>
+		<key>optimization</key>
+		<dict>
+			<key>match</key>
+			<string>(minimize|maximize)</string>
+			<key>name</key>
+			<string>keyword.other.pddl</string>
 		</dict>
 		<key>other-keyword</key>
 		<dict>
@@ -1104,6 +1251,10 @@
 							<string>#variable</string>
 						</dict>
 						<dict>
+							<key>include</key>
+							<string>#either</string>
+						</dict>
+						<dict>
 							<key>captures</key>
 							<dict>
 								<key>1</key>
@@ -1149,6 +1300,10 @@
 					<string>meta.type.pddl</string>
 					<key>patterns</key>
 					<array>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
 						<dict>
 							<key>include</key>
 							<string>#predicate</string>
@@ -1207,6 +1362,14 @@
 						<dict>
 							<key>include</key>
 							<string>#goal</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#metric</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#length</string>
 						</dict>
 					</array>
 				</dict>
@@ -1273,7 +1436,7 @@
 					<key>end</key>
 					<string>\)</string>
 					<key>name</key>
-					<string>requirement.meta.type.pddl</string>
+					<string>meta.type.requirement.pddl</string>
 					<key>patterns</key>
 					<array>
 						<dict>
@@ -1399,7 +1562,7 @@
 		</dict>
 	</dict>
 	<key>scopeName</key>
-	<string>text.pddl</string>
+	<string>source.pddl</string>
 	<key>uuid</key>
 	<string>2aef09fc-d29e-4efd-bf1a-974598feb7a9</string>
 </dict>

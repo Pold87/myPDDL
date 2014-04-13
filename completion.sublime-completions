@@ -1,5 +1,5 @@
 {
-	"scope": "text.pddl - meta.type.requirement.pddl",
+	"scope": "text.pddl",
 
 	"completions":
 	[
@@ -12,9 +12,9 @@
 	":functions",
 	":constraints",
 	"either",
-	":action"
-	":parameters"
-	":precondition"
+	":action",
+	":parameters",
+	":precondition",
 	":effect"
 
 	]

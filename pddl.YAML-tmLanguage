@@ -1,7 +1,7 @@
 # [PackageDev] target_format: plist, ext: tmLanguage
 ---
 name: PDDL
-scopeName: text.pddl
+scopeName: source.pddl
 fileTypes: [pddl]
 uuid: 2aef09fc-d29e-4efd-bf1a-974598feb7a9
 
@@ -24,6 +24,11 @@ repository:
 ### General specifications ###
 ##############################
 
+  error:
+    match: \s*((?:\w+|\?|_|-|\.))\s*
+    captures:
+      '1': {name: invalid.illegal.pddl}
+
   built-in-var:
     match: \?duration 
     name: variable.language.pddl
@@ -38,6 +43,12 @@ repository:
     match: '(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b'
     captures:
       '1': {name: string.unquoted.pddl}
+    #name: string.unquoted.pddl
+
+  action-name:
+    match: '(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b'
+    captures:
+      '1': {name: string.unquoted.action.pddl}
     #name: string.unquoted.pddl
 
   comment:
@@ -127,7 +138,7 @@ repository:
   requirement:
     patterns:
       - comment: "Requirement"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.requirement.pddl # TODO: NAME
         begin: '\(\s*(?i:(:requirements))\b'
         beginCaptures:
           '1': {name: storage.type.pddl}
@@ -181,6 +192,7 @@ repository:
           '1': {name: storage.type.pddl}
         patterns:
           - include: '#variable'
+          - include: '#either'
           - name: meta.name.function.pddl
             captures:
               '1': {name: constant.character.pddl}
@@ -208,6 +220,7 @@ repository:
           - include: '#pddl-expr'
           - include: '#number'
           - include: '#init-predicate'
+          - include: '#comment'
 
   applied-predicate-other:
     patterns:
@@ -219,6 +232,7 @@ repository:
           - include: '#variable'
           - include: '#pddl-expr'
           - include: '#applied-predicate'
+          - include: '#comment'
 
   applied-predicate:
     patterns:
@@ -272,15 +286,30 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#predicate'
           - include: '#any-sexpr'
+
+  derived:
+    patterns:
+     - comment: "Derived Predicate"
+       name: meta.type.pddl
+       begin: '\(\s*(?i:(:derived))\b'
+       end: '\)'
+       beginCaptures:
+         '1': {name: storage.type.pddl}
+       patterns:
+         - include: '#comment'
+         - include: '#any-sexpr'
+         - include: '#connected-predicate'
+         - include: '#applied-predicate'
 
 
   connected-predicate-other:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
         #name: string.unquoted.pddl # TODO: NAME
-        begin: '\((and|or|eq|neq|not|=|>=|<=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\b'
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
@@ -289,13 +318,14 @@ repository:
           - include: '#connected-predicate'
           - include: '#applied-predicate'
           - include: '#variable'
+          - include: '#number'
           - include: '#pddl-expr'
 
   connected-predicate:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
         name: meta.type.pddl # TODO: NAME
-        begin: '\((and|or|eq|neq|not|=|>=|<=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\b'
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
@@ -304,6 +334,7 @@ repository:
           - include: '#connected-predicate-other'
           - include: '#applied-predicate'
           - include: '#variable'
+          - include: '#number'
           - include: '#pddl-expr'
 
 # TODO:
@@ -330,7 +361,7 @@ repository:
     patterns:
       - begin: '(-)\s+\((either)'
         beginCaptures:      
-          '1': {name: entity.name.function.pddl}
+          '1': {name: constant.character.pddl}
           '2': {name: storage.type.pddl}
         patterns:
           - include: '#pddl-expr'
@@ -403,8 +434,10 @@ repository:
         patterns:
           - include: '#connected-predicate'
           - include: '#applied-predicate'
-          - include: '#pddl-expr'
-          - include: '#comment'
+          #- include: '#pddl-expr'
+          - include: '#action-name'
+          #TODO: Do the same for durative-actions
+          - du: '#comment'
           - include: '#typed-variable-list'
           - include: '#action-keyword'
           - include: '#built-in-var'
@@ -460,6 +493,8 @@ repository:
             match: (\s+(?:\w|-)+){2,}
           - include: '#pddl-expr'
 
+  
+
 ##############################
 ### Problem specifications ###
 ##############################
@@ -480,6 +515,8 @@ repository:
         - include: '#inits'
         - include: '#objects'
         - include: '#goal'
+        - include: '#metric'
+        - include: '#length'
 
   objects:
     patterns:
@@ -490,6 +527,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - name: meta.keyword.pddl
             captures:
               '1': {name: entity.name.function.pddl}
@@ -526,5 +564,23 @@ repository:
           - include: '#comment'
           - include: '#any-sexpr'
 
+  optimization:
+    match: '(minimize|maximize)'
+    name: keyword.other.pddl
 
 # TODO: Metric
+  metric:
+    patterns:
+      - comment: "Metric"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:metric))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#optimization'
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#comment'
+          - include: '#number'
+          - include: '#any-sexpr'
