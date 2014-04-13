@@ -1,7 +1,7 @@
 PDDL Sublime Text Plugin
 =========================
 
-*View my [Project site](http://pold87.github.io/sublime-pddl/) for current developments and further information.*
+*View my [Project site](http://pold87.github.io/myPDDL/) for current developments and further information.*
 
 Supported filetypes
 -------------------
