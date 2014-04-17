@@ -1,0 +1,64 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: PDDL
+scopeName: text.pddl
+fileTypes: [pddl]
+uuid: 2aef09fc-d29e-4efd-bf1a-974598feb7a9
+
+patterns:
+
+- comment: Comments beginning with ';'
+  name: comment.line.semicolon.pddl
+  match: (;).*$\n?
+  captures:
+    '1': {name: punctuation.definition.comment.pddl}
+
+- name: variable.other.pddl
+  match: \?[A-Za-z]+
+  
+- name: constant.numeric.pddl
+  match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
+
+- name: keyword.other.pddl
+  match: :(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs)
+
+- name: storage.type.pddl
+  match: :(requirements|types|constants|predicates|functions)
+
+- name: support.function.pddl
+  match: (assign|scale-up|scale-down|increase|decrease)
+
+- name: support.other.pddl
+  match: (forall|\(at(\s+)|over)
+
+- name: constant.language.pddl
+  match: (start|end|all)
+
+- name: keyword.operator.pddl
+  match: \b(?i:eq|neq|and|or)\b
+
+- name: keyword.operator.pddl
+  match: :(parameters|duration|condition|effect|precondition)
+
+- comment: domain/problem definition
+  name: meta.function.pddl
+  begin: \((\b(?i:define)\b)(\s+) #eventuell schon vorher matchen, da so erst nach Eingabe des Leerzeichens
+  end: '\)' # This is the bracket after the domain/problem name
+  beginCaptures:
+      '1': {name: storage.type.function-type.pddl}
+  patterns: 
+  - include: '$self'
+  - name: meta.function.pddl
+    match: (\()(\b(?i:(domain|problem))\b)(\s*)((\w|\-|\!|\?)*)(\s*)((\w|\-|\!|\?)*)
+    captures:
+      '2': {name: support.function.pddl} 
+      '5': {name: entity.name.class.pddl}
+      '8': {name: invalid.illegal.pddl}
+
+- comment: Durative Actions
+  name: meta.function.pddl
+  begin: '\(:(\b(?i:(durative-action|action)))(\s*)((\w|\-|\!|\?)*)'
+  beginCaptures:
+      '1': {name: storage.type.function-type.pddl}
+      '4': {name: entity.name.function.pddl}
+  end: '\n'

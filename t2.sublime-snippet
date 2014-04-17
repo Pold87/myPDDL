@@ -1,9 +1,0 @@
-<snippet>
-	<content><![CDATA[
-${1:subtype1} ${2:subtype2} - ${3:object}
-]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>t2</tabTrigger>
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
-</snippet>

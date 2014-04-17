@@ -1,0 +1,29 @@
+<snippet>
+	<content><![CDATA[
+(define (domain ${1:domain-name})
+
+  (:requirements 
+${2:    :typing}
+  )
+
+  (:types
+    ${3:subtype1} ${4:subtype2} ${5:subtype3} - ${6:object}
+  )
+
+  (:predicates
+    (${7:predicateName} ${8:?x} - ${9:object} ${10:?y} - ${11:object}) 	
+  ) 
+
+  (:action ${12:action-name}
+    :parameters ($13)
+    :precondition ($14)
+    :effect ($15))
+
+)
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>domain</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.pddl</scope>
+</snippet>

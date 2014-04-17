@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+(:durative-action ${1:action-name}
+	:parameters (?${2:x} - ${3:object})
+	:duration (= ?duration ${4:100})
+	:condition (at start ${5:()})
+	:effect (at end ${6:()}))
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>durative-action</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

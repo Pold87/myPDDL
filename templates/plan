@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Specify the basics
+planner="~/Documents/plan"
+domain="domain.pddl"
+problem="p01.pddl"
+
+# Plan!
+$($planner -o $domain -f $problem)

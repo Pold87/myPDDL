@@ -1,0 +1,594 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: PDDL
+scopeName: source.pddl
+fileTypes: [pddl]
+uuid: 2aef09fc-d29e-4efd-bf1a-974598feb7a9
+
+patterns:
+
+#####################
+### Customization ###
+
+- include: '#problem'
+- include: '#domain'
+- include: '#comment'
+
+##################
+### Repository ###
+
+repository:
+
+
+##############################
+### General specifications ###
+##############################
+
+  error:
+    match: \s*((?:\w+|\?|_|-|\.))\s*
+    captures:
+      '1': {name: invalid.illegal.pddl}
+
+  built-in-var:
+    match: \?duration 
+    name: variable.language.pddl
+
+  variable:
+    match: '(?:^|\s+)(\?[a-zA-Z](?:\w|-|_)*)'
+    name: keyword.other.pddl
+
+  pddl-expr:
+    match: '(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b'
+    captures:
+      '1': {name: string.unquoted.pddl}
+
+  action-name:
+    match: '(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b'
+    captures:
+      '1': {name: string.unquoted.action.pddl}
+
+  comment:
+    comment: "Comments beginning with ';'"
+    name: comment.line.semicolon.pddl
+    match: ;.*
+
+  number:
+    name: constant.numeric.pddl
+    match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
+
+  keyword:
+    name: storage.type.pddl # TODO: UPDATE
+    match: :(constraints|metric|length)
+
+
+######################
+### Domain Helpers ###
+######################
+
+
+  function-keyword:
+    name: support.function.pddl
+    match: (assign|scale-up|scale-down|increase|decrease)
+
+
+  # TODO
+  other-keyword:
+    name: support.other.pddl
+    comment: "Remove parent or do sth that the paren isn't highlighted"
+    match: \b(forall|(at\s+(start|end))|over)\b
+
+
+  language-constant:
+    name: constant.language.pddl
+    match: (start|end|all)
+
+  action-keyword:
+    name: keyword.operator.pddl
+    match: ':(?i:(parameters|vars|precondition|effect))(?!:|\?)\b'
+
+  durative-action-keyword:
+    name: keyword.operator.pddl
+    match: ':(?i:(parameters|vars|duration|condition|effect))(?!:|\?)\b'
+
+
+
+#############################
+### Domain specifications ###
+#############################
+
+  domain:  
+    patterns:
+    - comment: "domain definition "
+      name: meta.function.pddl
+      begin: '\(\s*((?i:define))\b'
+      beginCaptures:
+        '1': {name: storage.type.pddl}
+      end: '\)'
+      patterns: 
+        - include: '#comment'
+        - include: '#domain-name-in-define'
+        - include: '#requirement'
+        - include: '#types'
+        - include: '#constants'
+        - include: '#predicates'
+        - include: '#derived'
+        - include: '#new-functions'
+        - include: '#action'
+        - include: '#durative-action'
+        - include: '#any-sexpr'
+
+
+  domain-name-in-define:
+    patterns:
+      - comment: "Domain name in problem file"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(domain))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#comment'
+          - name: invalid.illegal.pddl
+            match: (\s+(?:\w|-)+){2,}
+          - include: '#pddl-expr'
+
+  requirement:
+    patterns:
+      - comment: "Requirement"
+        name: meta.type.requirement.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:requirements))\b'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        end: '\)'
+        patterns:
+        - name: keyword.other.pddl
+          match:  :(?i:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs))\b
+
+  types:
+    patterns:
+      - comment: "Types"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:types))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              '1': {name: constant.character.pddl}
+              #'1': {name: string.unquoted.pddl}
+              '2': {name: entity.name.function.pdd}
+            match:  (-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)
+          - include: '#either'
+          - include: '#pddl-expr'
+          - include: '#any-sexpr'
+
+  constants:
+    patterns:
+      - comment: "Constants"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:constants))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - name: meta.keyword.pddl
+            captures:
+              '1': {name: entity.name.function.pddl}
+              #'1': {name: string.unquoted.pddl}
+              '2': {name: entity.name.tag.pddl}
+            match:  (-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)
+          - include: '#either'
+          - include: '#pddl-expr'
+
+  predicate:
+    patterns:
+      - begin: '\(\s*((?:\w|-)+)'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#variable'
+          - include: '#either'
+          - name: meta.name.function.pddl
+            captures:
+              '1': {name: constant.character.pddl}
+              '2': {name: entity.name.function.pddl}
+            match: (-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)
+
+  init-predicate:
+    patterns:
+      - begin: '\(\s*((?:\w|-)+)'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#pddl-expr'
+          - include: '#number'
+          - include: '#init-predicate-other'
+
+  init-predicate-other:
+    patterns:
+      - begin: '\(\s*((?:\w|-)+)'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#pddl-expr'
+          - include: '#number'
+          - include: '#init-predicate'
+          - include: '#comment'
+
+  applied-predicate-other:
+    patterns:
+      - begin: '\(\s*((?:\w|-)+)'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#variable'
+          - include: '#pddl-expr'
+          - include: '#applied-predicate'
+          - include: '#comment'
+
+  applied-predicate:
+    patterns:
+      - begin: '\(\s*((?:\w|-)+)'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#variable'
+          - include: '#pddl-expr'
+          - include: '#applied-predicate-other'
+
+          
+  function:
+    patterns:
+      - begin: '\(\s*((?:\w|-)+)'
+        end: '(\)\s+-\s+((?:\w|-)+))'
+        endCaptures:
+          '2': {name: storage.type.pddl}
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#variable'
+          - name: meta.name.function.pddl
+            captures:
+              '1': {name: entity.name.function.pddl}
+            match: '-\s+((?:\w|-)+)'
+
+
+  function-with-either:
+    patterns:
+      - begin: '\((\w+)'
+        end: '(\)\s+-\s+((?:\w|-)+))|\)'
+        endCaptures:
+          '2': {name: storage.type.pddl}
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#variable'
+          - name: meta.name.function.pddl
+            captures:
+              '1': {name: entity.name.function.pddl}
+            match: '-\s+((?:\w|-)+)'
+      
+  predicates:
+    patterns:
+      - comment: "Predicates"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:predicates))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#comment'
+          - include: '#predicate'
+          - include: '#any-sexpr'
+
+  derived:
+    patterns:
+     - comment: "Derived Predicate"
+       name: meta.type.pddl
+       begin: '\(\s*(?i:(:derived))\b'
+       end: '\)'
+       beginCaptures:
+         '1': {name: storage.type.pddl}
+       patterns:
+         - include: '#comment'
+         - include: '#connected-predicate'
+         - include: '#applied-predicate'
+         - include: '#predicate'
+         - include: '#variable-list'
+         - include: '#any-sexpr'
+
+
+  connected-predicate-other:
+    patterns:
+      - comment: "Predicates that are connected via and, or, etc."
+        #name: string.unquoted.pddl # TODO: NAME
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
+        end: '\)'
+        beginCaptures:
+          '1': {name: string.unquoted.pddl}
+        patterns:
+          - include: '#typed-variable-list'
+          - include: '#variable'
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#number'
+          - include: '#pddl-expr'
+
+  connected-predicate:
+    patterns:
+      - comment: "Predicates that are connected via and, or, etc."
+        name: meta.type.pddl # TODO: NAME
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
+        end: '\)'
+        beginCaptures:
+          '1': {name: string.unquoted.pddl}
+        patterns:
+          - include: '#typed-variable-list'
+          - include: '#connected-predicate-other'
+          - include: '#applied-predicate'
+          - include: '#variable'
+          - include: '#number'
+          - include: '#pddl-expr'
+
+# TODO:
+  functions:
+    patterns:
+      - comment: "Functions"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:functions))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#function'
+          - begin: '\((either)'
+            beginCaptures:      
+              '1': {name: entity.name.function.pddl}
+              '2': {name: storage.type.pddl}
+            patterns:
+              - include: '#pddl-expr'
+            end: '\)'
+         #- include: '#function-with-either'
+
+  either:
+    patterns:
+      - begin: '(-)\s+\((either)'
+        beginCaptures:      
+          '1': {name: constant.character.pddl}
+          '2': {name: storage.type.pddl}
+        patterns:
+          - include: '#pddl-expr'
+        end: '\)'
+
+  new-functions:
+    patterns:
+      - comment: "Functions"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:functions))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#either'
+          - include: '#predicate'
+          - include: '#pddl-expr'
+
+  variable-list:
+    patterns:
+    - begin: '\('
+      end: '\)'
+      patterns:
+        - include: '#variable'
+
+  typed-variable-list:
+    patterns:
+      - begin: '\((\?((?:\w|-|_)+))'
+        end: '\)'
+        beginCaptures:
+          '1': {name: keyword.other.pddl}
+        patterns:
+          - include: '#variable'
+          - name: meta.name.function.pddl
+            captures:
+              '1': {name: constant.character.pddl}
+              '2': {name: entity.name.function.pddl}
+            match: '(-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)(?!:|\?)\b'
+
+  precondition:
+    patterns:
+      - name: entity.name.function.pddl
+        begin: ':precondition\s*'
+        end: \b
+
+ # any-sexpr:
+ #   patterns:
+ #     - match: \(.*\)
+ #       patterns:
+ #         - include: '$self'
+
+
+  any-sexpr:
+    patterns:
+      - begin: '\('
+        end: '\)'
+        patterns:
+          - include: '#any-sexpr-other'
+          - match:  (?:\s)*
+
+  any-sexpr-other:
+    patterns:
+      - begin: '\('
+        end: '\)'
+        patterns:
+          - include: '#any-sexpr'
+          - match: (?:\s)*
+
+  action:
+    patterns:
+      - comment: "Action"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:action))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          #- include: '#pddl-expr'
+          - include: '#action-name'
+          #TODO: Do the same for durative-actions
+          - du: '#comment'
+          - include: '#typed-variable-list'
+          - include: '#variable'
+          - include: '#action-keyword'
+          - include: '#built-in-var'
+          - include: '#any-sexpr'
+
+  durative-action:
+    patterns:
+      - comment: "Durative Action"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:durative-action))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#typed-variable-list'
+          - include: '#variable'
+          - include: '#pddl-expr'
+          - include: '#comment'
+          - include: '#durativ-action-keyword'
+          - include: '#built-in-var'
+          - include: '#any-sexpr'
+
+#######################
+### Problem Helpers ###
+#######################
+
+  problem-name-in-define:
+    patterns:
+      - comment: "Domain name in problem file"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(problem))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#comment'
+          - name: invalid.illegal.pddl
+            match: (\s+(?:\w|-)+){2,}
+          - include: '#pddl-expr'
+
+  domain-name-in-problem:
+    patterns:
+      - comment: "Domain name in problem file"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:domain))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#comment'
+          - name: invalid.illegal.pddl
+            match: (\s+(?:\w|-)+){2,}
+          - include: '#pddl-expr'
+
+  
+
+##############################
+### Problem specifications ###
+##############################
+
+
+  problem:  
+    patterns:
+    - comment: "problem definition"
+      name: meta.function.pddl
+      begin: '\(\s*((?i:define))\b(?!\s+\(domain)'
+      beginCaptures:
+        '1': {name: storage.type.function-type.pddl}
+      end: '\)' # Paren after the domain/problem name.
+      patterns: 
+        - include: '#comment'
+        - include: '#problem-name-in-define'
+        - include: '#domain-name-in-problem'
+        - include: '#inits'
+        - include: '#objects'
+        - include: '#goal'
+        - include: '#metric'
+        - include: '#length'
+
+  objects:
+    patterns:
+      - comment: "Objects"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:objects))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#comment'
+          - name: meta.keyword.pddl
+            captures:
+              '1': {name: entity.name.function.pddl}
+              #'1': {name: string.unquoted.pddl}
+              '2': {name: entity.name.tag.pddl}
+            match:  (-)(?:^|\s+)([a-zA-Z](?:\w|-|_)*)
+          - include: '#either'
+          - include: '#pddl-expr'
+
+  inits:
+    patterns:
+      - comment: "Initalized predicates"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:init))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#init-predicate'
+          - include: '#connected-predicate'
+          - include: '#any-sexpr'
+
+  goal:
+    patterns:
+      - comment: "Goal"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:goal))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#comment'
+          - include: '#any-sexpr'
+
+  optimization:
+    match: '(minimize|maximize)'
+    name: keyword.other.pddl
+
+# TODO: Metric
+  metric:
+    patterns:
+      - comment: "Metric"
+        name: meta.type.pddl # TODO: NAME
+        begin: '\(\s*(?i:(:metric))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#optimization'
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#comment'
+          - include: '#number'
+          - include: '#any-sexpr'

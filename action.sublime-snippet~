@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+(:action ${1:action-name}
+  :parameters (?${2:x} - ${3:object})
+  :precondition (and ($4:))
+  :effect (and ($4:))
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>action</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.pddl</scope> -->
+</snippet>

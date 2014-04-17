@@ -1,4 +1,0 @@
-{
-	"cmd": ["java", "-jar", "/home/pold/Documents/BA/org-ba/target/org-ba-0.1.0-SNAPSHOT-standalone.jar", "$file"],
-	"selector": "text.plain,text.pddl"
-}

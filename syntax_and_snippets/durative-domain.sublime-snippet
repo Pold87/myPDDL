@@ -1,0 +1,41 @@
+<snippet>
+	<content><![CDATA[
+(define (domain ${1:domainName})
+
+	(:requirements 
+${2:		:durative-actions}
+${3:		:equality}
+${4:		:negative-preconditions}
+${5:		:numeric-fluents}
+${6:		:object-fluents}
+${7:		:typing}
+	)
+
+	(:types
+
+	)
+
+	(:constants
+
+	)
+
+  	(:predicates
+  	
+  	) 
+
+  	(:functions
+  
+	)
+
+ 	(:durative-action ${8:actionName}
+		:parameters (?${9:x} - ${10:<objectType>})
+		:duration (= ?duration ${11:#duration})
+		:condition (at start ${12:<effects>})
+		:effect (at end ${13:<effects>}))
+)
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>durative-domain</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.pddl</scope>
+</snippet>

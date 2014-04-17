@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+(${1:functionName} ?${2:x}) - ${3:returnType}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>f1</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.pddl</scope> -->
+</snippet>

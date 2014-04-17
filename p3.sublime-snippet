@@ -1,9 +1,0 @@
-<snippet>
-	<content><![CDATA[
-(${1:predicateName} ${2:?x} - ${3:object} ${4:?y} - ${5:object} ${6:?z} - ${7:object})
-]]></content>
-	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
-	<tabTrigger>p3</tabTrigger>
-	<!-- Optional: Set a scope to limit where the snippet will trigger -->
-	<!-- <scope>source.python</scope> -->
-</snippet>

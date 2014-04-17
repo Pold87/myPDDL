@@ -1,0 +1,136 @@
+#!/bin/bash
+
+###################
+## Customization ##
+###################
+
+###########
+# General #
+###########
+
+# Set this path to the myPDDL folder
+path=~/Documents/mypddl/target
+
+# Name of the myPDDL jar file
+mypddl=mypddl-1.0.0.jar
+
+
+############
+# Advanced #
+############
+
+# Set path to file of this script:
+script="$(readlink -f ${BASH_SOURCE[0]})"
+path="$(dirname $script)"
+
+# Remove trailing "/" in path:
+path=$(readlink -f $path)
+
+
+##############
+# myPDDL-new #
+##############
+
+# Path to the domain template
+domaintemplate="$path/templates/domain-template.pddl"
+# Path of the problem template
+problemtemplate="$path/templates/problem-template.pddl"
+# Path to the README file
+readmetemplate="$path/templates/README-template.md"
+# Path to the DOT template
+dottemplate="$path/templates/dot-template.dot"
+# Path to the planning script template
+plantemplate="$path/templates/plan"
+
+# The root path of myPDDL-new projects. # Customize the variable pddl_dir
+# to have a fixed location for myPDDL projects. Default: as argument
+# arbitrary folder can be specified. Another option would be the
+# current working directory (pddl_dir=`pwd`)
+pddl_dir="$3"
+# Normalize pddl_dir (to cut trailing slashes)
+pddl_dir=$(readlink -f $3)
+
+
+##################
+# myPDDL-diagram #
+##################
+
+
+# Image viewer for displaying type diagram (e.g. gimp, eog):
+# Use "auto" for displaying the diagram in a JFrame
+viewer=gimp
+
+# Revision control activated (yes or no)?
+revisioncontrol=yes
+
+
+###################
+# myPDDL-distance #
+###################
+
+# Name of the predicate that specifies the location in the PDDL
+# problem file
+locationname="location"
+
+##################
+# Error Handling #
+##################
+
+function error
+{
+case "$1" in
+
+    "new") printf "myPDDL-$1: An error occured.
+Please check that: ${2:-"NO PROJECT NAME SPECIFIED!"}
+is a correct project name (no spaces, no special symbols)
+and that the destination directory is writable.
+See $path/errors.log for details about the error."
+            ;;
+    "diagram") printf  "An error occured.
+Please check that: ${2:-"NO INPUT FILE SPECIFIED!"}
+is a correct PDDL domain file containing no bracket errors.
+See $path/errors.log for details about the error."
+            ;;
+    "distance") "An error occured.
+Please check that: ${2:-"NO INPUT FILE SPECIFIED!"}
+is a correct PDDL domain file containing no bracket errors.
+See $path/errors.log for details about the error."
+            ;;
+esac         
+    exit 1
+}
+
+
+################
+# Application  #
+################
+
+# Call myPDDL jar file with specified arguments:
+case "$1" in
+
+    "new") java -jar "$path/$mypddl" new "$2" "$domaintemplate" "$problemtemplate" "$readmetemplate" "$plantemplate" "$pddl_dir/" && echo "PDDL project created in $pddl_dir/$2" 2> "$path/errors.log" || error "new" "$2"
+        ;;
+    "diagram") java -jar "$path/$mypddl" diagram "$2" "$revisioncontrol" "$viewer" "$dottemplate" 2> "$path/errors.log" || error "diagram" "$2"
+        ;;
+    "distance") java -jar "$path/$mypddl" distance "$2"  "$locationname" 2> "$path/errors.log" || error "distance" "$2"
+        ;;
+esac
+
+
+##############
+# Print Help #
+##############
+
+# If there is no argument:
+if [ -z "$1" ]
+then
+
+cat "$path/README_short.txt"
+exit 1
+fi
+
+### Usage myPDDL.jar:
+## diagram:
+# input-file revisioncontrol image-displayer
+
+
