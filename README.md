@@ -41,6 +41,7 @@ This package contains some often used PDDL constructs. Try one of the following,
 Screenshots
 -----------
 
-![alt text](https://raw.github.com/Pold87/myPDDL/ "PDDL syntax highlighting - Theme: Monokai")
+![alt text](https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/coffee_errors_img.png "PDDL syntax highlighting - Theme: Monokai")
 
+A deliberately erroneous domain. Constructs not specified by PDDL are not highlighted.
 
