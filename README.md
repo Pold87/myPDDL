@@ -11,9 +11,11 @@ Supported filetypes
 Installation
 ------------
 
-Simply place this repository into your Sublime text packages folder (Preferences \-\> Browse Packages...). You have two possibilities to do so:
-- *git clone https://github.com/Pold87/myPDDL.git PDDL* 
-- Download the ZIP and unzip it to your packages folder. Thereby, please name the created folder PDDL.
+Simply place this repository into your Sublime text packages folder (Preferences \-\> Browse Packages...). You have three possibilities to do so:
+- Via Sublime Text Package Control (search for myPDDL) (RECOMMENDED!)
+- *git clone https://github.com/Pold87/myPDDL.git myPDDL* 
+- Download the ZIP and unzip it to your packages folder.
+
 
 
 Usage
@@ -39,6 +41,6 @@ This package contains some often used PDDL constructs. Try one of the following,
 Screenshots
 -----------
 
-![alt text](https://raw.github.com/Pold87/ReadmeTest/master/Sunburst.png "ṔDDL syntax highlighting - Theme: Sunburst")
+![alt text](https://raw.github.com/Pold87/myPDDL/ "PDDL syntax highlighting - Theme: Monokai")
 
 
