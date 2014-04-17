@@ -35,6 +35,7 @@ This package contains some often used PDDL constructs. Try one of the following,
 
 * template: `domain`, `problem`
 * types: `t1`, `t2`, `t3`, etc.
+* predicates: `p1`, `p2`, `p3`, etc.
 * functions: `f1`, `f2`, `f3`, etc.
 * action: `action`, `durative-action`
 
