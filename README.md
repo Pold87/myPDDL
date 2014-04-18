@@ -10,16 +10,16 @@ analyzing and expanding PDDL files and thereby promoting the
 collaboration between knowledge engineers and the use of PDDL in
 real-world applications. It consists of the following integral parts:
 
-- myPDDL-new: Create a myPDDL project folder structure with PDDL
+- _myPDDL-new_: Create a myPDDL project folder structure with PDDL
   domain and problem skeletons.
-- myPDDL-syntax: A context-aware syntax highlighting feature.
-- myPDDL-snippet: Code snippets (templates), which can be inserted
+- _myPDDL-syntax_: A context-aware syntax highlighting feature.
+- _myPDDL-snippet_: Code snippets (templates), which can be inserted
 in myPDDL files.
-- myPDDL-distance: Automated distance calculation for PDDL
+- _myPDDL-distance_: Automated distance calculation for PDDL
   locations, specified in a problem file.
-- myPDDL-diagram: A type diagram generator for analyzing the
+- _myPDDL-diagram_: A type diagram generator for analyzing the
   structure of myPDDL type hierarchies.
-- myPDDL-IDE: An integrated development environment for the use
+- _myPDDL-IDE_: An integrated development environment for the use
 of myPDDL in Sublime Text.
 
 Supported file types
