@@ -41,20 +41,24 @@ IMPORTANT
 You have to take a few more steps to enjoy all functionalities of myPDDL. I assume you are using Linux:
 
 1. Go to the Sublime Text Packages folder (Preferences -> Browse Packages ...) and change to the myPDDL folder.
-2. Ensure the file myPDDL (inside the folder myPDDL) is executable (type `chmod a+x myPDDL` in your shell).
-3. Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the folder myPDDL to your $PATH (you can do this by adding `export PATH=$PATH:/path/to/myPDDL-folder` to your ~/.profile file)
+2. Ensure that the file myPDDL (inside the folder myPDDL) is executable (type `chmod a+x myPDDL` in your shell).
+3. Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the folder myPDDL to your $PATH)
 4. Open myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".
-5. Enjoy:
+5. Enjoy (in Sublime Text):
 
     1. Create new projects -  open the command palette (*ctrl+shift+p*) and choose myPDDL-new. Specify the name for the project and press enter -> A new project structure with templates will be generated in your PDDL project directory (the project directory defaults to ~/Documents/myPDDL but you can choose a different folder in the file myPDDL.py - simply customize the variable "PDDL_project_root_folder"). 
     2. Switch to PDDL syntax highlighting: View -> Syntax -> PDDL  
-    3. Use snippets: type domain and press tab -> a domain skeleton appears (you can find all snippets below)
+    3. Use snippets: type domain and press *tab* -> a domain skeleton appears (you can find all snippets below)
     4. Display a PDDL type diagram: open the command palette (`ctrl`+`shift`+`p` and choose myPDDL-diagram)
     5. Calculate distances between PDDL predicates in a problem file specified by a predicate 'location' (you can choose a different name for this predicate in the myPDDL (NOT myPDDL.py) file in your $PATH). 
 
 ### Customization
 
 You can customize almost anything. Use a different image viewer by changing the variable "viewer" in the myPDDL file on your $PATH or customize the templates for the domain files of myPDDL-new (in the folder templates). 
+
+### Usage
+
+You can also use myPDDL via a command-interface (type `myPDDL` in a shell to see further information).
 
 ### Use Snippets
 
@@ -98,17 +102,21 @@ for basic revision control.
 ### Distance Calculation (myPDDL-distance)
 
 Before using the calculator the problem file looks like this (p01.pddl):
-`(:init ...
+```
+(:init ...
        (location gary 4 2)
-       (location pizza 2 3))`
+       (location pizza 2 3))
+```
 
 After the application, the distances have been added in a new file (p01-location.pddl):
-`(:init ...
+```
+(:init ...
        (location gary 4 2)
        (location pizza 2 3)
        (distance gary gary 0.0)
        (distance gary pizza 2.2361)
        (distance pizza gary 2.2361)
-       (distance pizza pizza 0.0))`
+       (distance pizza pizza 0.0))
+```
 
 
