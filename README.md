@@ -1,7 +1,26 @@
-PDDL Sublime Text Plugin
-=========================
+myPDDL - A Modular Knowledge Engineering Tool for PDDL
+=======================================================
 
 *View my [Project site](http://pold87.github.io/myPDDL/) for current developments and further information.*
+
+
+myPDDL is a highly customizable and extensible modular system,
+designed for supporting knowledge engineers in the process of writing,
+analyzing and expanding PDDL files and thereby promoting the
+collaboration between knowledge engineers and the use of PDDL in
+real-world applications. It consists of the following integral parts:
+
+- myPDDL-new: Create a myPDDL project folder structure with PDDL
+  domain and problem skeletons.
+- myPDDL-syntax: A context-aware syntax highlighting feature.
+- myPDDL-snippet: Code snippets (templates), which can be inserted
+in myPDDL files.
+- myPDDL-distance: Automated distance calculation for PDDL
+  locations, specified in a problem file.
+- myPDDL-diagram: A type diagram generator for analyzing the
+  structure of myPDDL type hierarchies.
+- myPDDL-IDE: An integrated development environment for the use
+of myPDDL in Sublime Text.
 
 Supported file types
 -------------------
