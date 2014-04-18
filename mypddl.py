@@ -13,7 +13,6 @@ PDDL_project_root_folder = "~/Documents/myPDDL/"
 # sublime, sublime-text)
 sublime_text="sublime-text"
 
-
 ###########
 # Experts #
 ###########
@@ -43,11 +42,11 @@ class MypddlThread(threading.Thread):
         # Run myPDDL
         # -diagram
         if self.args['text'][0] == "diagram":
-            os.system("myPDDL "+ "diagram" + " " + file_name)
+            subprocess.Popen(["myPDDL", "diagram", file_name])
             
         # -distance
         if self.args['text'][0] == "distance":
-            os.system("myPDDL "+ "distance" + " " + file_name)
+            subprocess.Popen(["myPDDL", "distance", file_name])
         # -new
         if self.args['text'][0] == "new":
             self.view.window().show_input_panel("Please enter the name of the new PDDL project:",

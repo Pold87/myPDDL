@@ -42,8 +42,9 @@ You have to take a few more steps to enjoy all functionalities of myPDDL. I assu
 
 1. Go to the Sublime Text Packages folder (Preferences -> Browse Packages ...) and change to the myPDDL folder.
 2. Ensure that the file myPDDL (inside the folder myPDDL) is executable (type `chmod a+x myPDDL` in your shell).
-3. Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the folder myPDDL to your $PATH)
-4. Open myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".
+3. Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the folder myPDDL to your $PATH (e.g. add `export PATH=$PATH:~/.config/sublime-text-2/Packages/myPDDL` to your .bashrc).
+
+4. Open the file myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".
 5. Enjoy (in Sublime Text):
 
     1. Create new projects -  open the command palette (*ctrl+shift+p*) and choose myPDDL-new. Specify the name for the project and press enter -> A new project structure with templates will be generated in your PDDL project directory (the project directory defaults to ~/Documents/myPDDL but you can choose a different folder in the file myPDDL.py - simply customize the variable "PDDL_project_root_folder"). 
@@ -83,7 +84,9 @@ used as the domain name within the files domain.pddl and p01.pddl.
 
 ### Syntax Highlighting (myPDDL-syntax)
 
-![alt text](https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/coffee_errors_img.png "PDDL syntax highlighting - Theme: Monokai")
+![alt
+ text](https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/coffee_errors_img.png
+ "PDDL syntax highlighting - Theme: Monokai")
 
 A deliberately erroneous domain. Constructs not specified by PDDL are not highlighted.
 
@@ -93,6 +96,9 @@ A deliberately erroneous domain. Constructs not specified by PDDL are not highli
  text](https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/diagram.png
  "An automatically generated type diagram of the Hacker World using
  myPDDL-diagram")
+
+Automatically generated type diagram of the [Hacker
+World](https://github.com/Pold87/myPDDL/blob/master/examples/hacker-world.pddl)
 
 Every time myPDDL-diagram is invoked, the names of the saved files are
 extended by an ascending revision number. Thus, one cannot only
