@@ -9,21 +9,12 @@
 ###########
 
 # Set this path to the myPDDL folder
-path=~/Documents/mypddl/target
+path=~/.config/sublime-text-2/Packages/myPDDL
 
 # Name of the myPDDL jar file
 mypddl=mypddl-1.0.0.jar
 
-
-############
-# Advanced #
-############
-
-# Set path to file of this script:
-script="$(readlink -f ${BASH_SOURCE[0]})"
-path="$(dirname $script)"
-
-# Remove trailing "/" in path:
+# Remove trailing "/" in path (if there is any):
 path=$(readlink -f $path)
 
 

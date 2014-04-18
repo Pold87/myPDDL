@@ -3,7 +3,7 @@ PDDL Sublime Text Plugin
 
 *View my [Project site](http://pold87.github.io/myPDDL/) for current developments and further information.*
 
-Supported filetypes
+Supported file types
 -------------------
 
 - .pddl
@@ -21,12 +21,11 @@ IMPORTANT
 
 You have to take a few more steps to enjoy all functionalities of myPDDL. I assume you are using Linux:
 
-1) Go to the Sublime Text Packages folder in a (Preferences -> Browse Packages ...).
-2) Go to the myPDDL folder.
-3) Ensure the file myPDDL (inside the folder myPDDL) is executable (type `chmod a+x myPDDL` in your shell).
-4) Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the the folder myPDDL to your $PATH (you can do this by adding `export PATH=$PATH:/path/to/myPDDL-folder` to your ~/.profile file)
-5) Open myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".
-6) Enjoy:
+1) Go to the Sublime Text Packages folder (Preferences -> Browse Packages ...) and change to the myPDDL folder.
+2) Ensure the file myPDDL (inside the folder myPDDL) is executable (type `chmod a+x myPDDL` in your shell).
+3) Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the folder myPDDL to your $PATH (you can do this by adding `export PATH=$PATH:/path/to/myPDDL-folder` to your ~/.profile file)
+4) Open myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".
+5) Enjoy:
    a) Create new projects -  open the command palette (*ctrl+shift+p*) and choose myPDDL-new. Specify the name for the project and press enter -> A new project structure with templates will be generated in your PDDL project directory (the project directory defaults to ~/Documents/myPDDL but you can choose a different folder in the file myPDDL.py - simply customize the variable "PDDL_project_root_folder"). 
    b) Switch to PDDL syntax highlighting: View -> Syntax -> PDDL  
    c) Use snippets: type domain and press tab -> a domain skeleton appears (you can find all snippets below)
