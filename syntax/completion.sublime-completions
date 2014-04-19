@@ -1,5 +1,5 @@
 {
-	"scope": "source.pddl",
+	"scope": "source.pddl - meta.type.requirement.pddl",
 
 	"completions":
 	[
@@ -16,6 +16,7 @@
 	":parameters",
 	":precondition",
 	":effect"
+
 
 	]
 }
