@@ -53,13 +53,9 @@ repository:
     match: ;.*
 
   number:
+    comment: "Numeric values"
     name: constant.numeric.pddl
     match: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
-
-  keyword:
-    name: storage.type.pddl # TODO: UPDATE
-    match: :(constraints|metric|length)
-
 
 ######################
 ### Domain Helpers ###
@@ -67,11 +63,12 @@ repository:
 
 
   function-keyword:
+    comment: "Function keywords that can be used in the effect of an action"
     name: support.function.pddl
     match: (assign|scale-up|scale-down|increase|decrease)
 
 
-  # TODO
+
   other-keyword:
     name: support.other.pddl
     comment: "Remove parent or do sth that the paren isn't highlighted"
@@ -121,7 +118,7 @@ repository:
   domain-name-in-define:
     patterns:
       - comment: "Domain name in problem file"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(domain))\b'
         end: '\)'
         beginCaptures:
@@ -135,7 +132,7 @@ repository:
   requirement:
     patterns:
       - comment: "Requirement"
-        name: meta.type.requirement.pddl # TODO: NAME
+        name: meta.type.requirement.pddl
         begin: '\(\s*(?i:(:requirements))\b'
         beginCaptures:
           '1': {name: storage.type.pddl}
@@ -147,7 +144,7 @@ repository:
   types:
     patterns:
       - comment: "Types"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:types))\b'
         end: '\)'
         beginCaptures:
@@ -166,7 +163,7 @@ repository:
   constants:
     patterns:
       - comment: "Constants"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:constants))\b'
         end: '\)'
         beginCaptures:
@@ -277,7 +274,7 @@ repository:
   predicates:
     patterns:
       - comment: "Predicates"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:predicates))\b'
         end: '\)'
         beginCaptures:
@@ -307,7 +304,6 @@ repository:
   connected-predicate-other:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
-        #name: string.unquoted.pddl # TODO: NAME
         begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
         end: '\)'
         beginCaptures:
@@ -323,7 +319,7 @@ repository:
   connected-predicate:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
         end: '\)'
         beginCaptures:
@@ -336,11 +332,11 @@ repository:
           - include: '#number'
           - include: '#pddl-expr'
 
-# TODO:
+
   functions:
     patterns:
       - comment: "Functions"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:functions))\b'
         end: '\)'
         beginCaptures:
@@ -354,7 +350,6 @@ repository:
             patterns:
               - include: '#pddl-expr'
             end: '\)'
-         #- include: '#function-with-either'
 
   either:
     patterns:
@@ -369,7 +364,7 @@ repository:
   new-functions:
     patterns:
       - comment: "Functions"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:functions))\b'
         end: '\)'
         beginCaptures:
@@ -406,13 +401,6 @@ repository:
         begin: ':precondition\s*'
         end: \b
 
- # any-sexpr:
- #   patterns:
- #     - match: \(.*\)
- #       patterns:
- #         - include: '$self'
-
-
   any-sexpr:
     patterns:
       - begin: '\('
@@ -432,7 +420,7 @@ repository:
   action:
     patterns:
       - comment: "Action"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:action))\b'
         end: '\)'
         beginCaptures:
@@ -440,10 +428,8 @@ repository:
         patterns:
           - include: '#connected-predicate'
           - include: '#applied-predicate'
-          #- include: '#pddl-expr'
           - include: '#action-name'
-          #TODO: Do the same for durative-actions
-          - du: '#comment'
+          - include: '#comment'
           - include: '#typed-variable-list'
           - include: '#variable'
           - include: '#action-keyword'
@@ -453,7 +439,7 @@ repository:
   durative-action:
     patterns:
       - comment: "Durative Action"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:durative-action))\b'
         end: '\)'
         beginCaptures:
@@ -490,7 +476,7 @@ repository:
   domain-name-in-problem:
     patterns:
       - comment: "Domain name in problem file"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:domain))\b'
         end: '\)'
         beginCaptures:
@@ -515,7 +501,7 @@ repository:
       begin: '\(\s*((?i:define))\b(?!\s+\(domain)'
       beginCaptures:
         '1': {name: storage.type.function-type.pddl}
-      end: '\)' # Paren after the domain/problem name.
+      end: '\)' # Bracket after the domain/problem name.
       patterns: 
         - include: '#comment'
         - include: '#problem-name-in-define'
@@ -529,7 +515,7 @@ repository:
   objects:
     patterns:
       - comment: "Objects"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl 
         begin: '\(\s*(?i:(:objects))\b'
         end: '\)'
         beginCaptures:
@@ -548,7 +534,7 @@ repository:
   inits:
     patterns:
       - comment: "Initalized predicates"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:init))\b'
         end: '\)'
         beginCaptures:
@@ -561,7 +547,7 @@ repository:
   goal:
     patterns:
       - comment: "Goal"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:goal))\b'
         end: '\)'
         beginCaptures:
@@ -580,7 +566,7 @@ repository:
   metric:
     patterns:
       - comment: "Metric"
-        name: meta.type.pddl # TODO: NAME
+        name: meta.type.pddl
         begin: '\(\s*(?i:(:metric))\b'
         end: '\)'
         beginCaptures:

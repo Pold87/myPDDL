@@ -9,13 +9,11 @@
 ###########
 
 # Set this path to the myPDDL folder
+# Don't use a trailing slash (right: /myPDDL, wrong: /myPDDL/)
 path=~/.config/sublime-text-2/Packages/myPDDL
 
 # Name of the myPDDL jar file
 mypddl=mypddl-1.0.0.jar
-
-# Remove trailing "/" in path (if there is any):
-path=$(readlink -f $path)
 
 
 ##############
@@ -38,8 +36,6 @@ plantemplate="$path/templates/plan"
 # arbitrary folder can be specified. Another option would be the
 # current working directory (pddl_dir=`pwd`)
 pddl_dir="$3"
-# Normalize pddl_dir (to cut trailing slashes)
-pddl_dir=$(readlink -f $3)
 
 
 ##################

@@ -61,7 +61,7 @@
 							<string>#action-name</string>
 						</dict>
 						<dict>
-							<key>du</key>
+							<key>include</key>
 							<string>#comment</string>
 						</dict>
 						<dict>
@@ -768,6 +768,8 @@
 		</dict>
 		<key>function-keyword</key>
 		<dict>
+			<key>comment</key>
+			<string>Function keywords that can be used in the effect of an action</string>
 			<key>match</key>
 			<string>(assign|scale-up|scale-down|increase|decrease)</string>
 			<key>name</key>
@@ -1035,13 +1037,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>keyword</key>
-		<dict>
-			<key>match</key>
-			<string>:(constraints|metric|length)</string>
-			<key>name</key>
-			<string>storage.type.pddl</string>
-		</dict>
 		<key>language-constant</key>
 		<dict>
 			<key>match</key>
@@ -1141,6 +1136,8 @@
 		</dict>
 		<key>number</key>
 		<dict>
+			<key>comment</key>
+			<string>Numeric values</string>
 			<key>match</key>
 			<string>\b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b</string>
 			<key>name</key>
