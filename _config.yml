@@ -24,9 +24,9 @@ navigation:
    url:
    symbol: glyphicon glyphicon-edit
    options: data-toggle="modal" data-target="#myModal"
- - text: PDDL
-   title: What is PDDL?
-   utl: /pddl.html
+# - text: PDDL
+#   title: What is PDDL?
+#   utl: /pddl.html
  - text: About
    title: About Me
    url: /about.html
