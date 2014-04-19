@@ -3,9 +3,13 @@
 <head>
 	<title> About |  PDDL</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-amelia.min.css">
+	<link rel="stylesheet" type="text/css" href="custom/custom-bootstrap_simple.css">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-switch.css">
+
+	<!-- Google Analytics -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -41,7 +45,7 @@
 
       <li class="first  ">
 
-        <a class="" href="/sublime-pddl/download.html" title="Download lastest Version of PDDL Syntax Highlighter" ><span class="glyphicon glyphicon-circle-arrow-down"></span> Download</a>
+        <a class="" href="http://pold87.github.io/myPDDL/download.html" title="Download lastest Version of PDDL Syntax Highlighter" ><span class="glyphicon glyphicon-circle-arrow-down"></span> Download</a>
       </li>
     
       
@@ -49,7 +53,7 @@
 
       <li class="  ">
 
-        <a class="" href="/sublime-pddl/doc.html" title="Read the Manual" ><span class="glyphicon glyphicon-file"></span> Doc</a>
+        <a class="" href="http://pold87.github.io/myPDDL/doc.html" title="Read the Manual" ><span class="glyphicon glyphicon-file"></span> Doc</a>
       </li>
     
       
@@ -62,12 +66,20 @@
     
       
       
+
+      <li class="  ">
+
+        <a class="" href="http://pold87.github.io/myPDDL" title="What is PDDL?" ><span class=""></span> PDDL</a>
+      </li>
+    
+      
+      
         
       
 
       <li class=" active last">
 
-        <a class="active" href="/sublime-pddl/about.html" title="About Me" ><span class="glyphicon glyphicon-globe"></span> About</a>
+        <a class="active" href="http://pold87.github.io/myPDDL/about.html" title="About Me" ><span class="glyphicon glyphicon-globe"></span> About</a>
       </li>
     
   </ul>
@@ -80,8 +92,8 @@
 	<div class="container center">
 		<div class="col-md-8 pull-left">
 <h1>About</h1>
-<p>I am a cognitive science student at the University of Tuebingen. This website was created for my bachelor thesis that is about AI planning using the <strong>P</strong>lanning <strong>D</strong>omain <strong>D</strong></str>efinition <strong>L</strong>anguage <strong>PDDL</strong>.
-Searching for an efficient way of writing PDDL domains and problems, I decided to create a PDDL package for the awesome <a href="http://www.sublimetext.com/">Sublime Text Editor</a>.</p>
+
+<p>I am a cognitive science student at the University of Tuebingen and write my bachelor thesis about 'AI planning using the <strong>P</strong>lanning <strong>D</strong>omain <strong>D</strong></str>efinition <strong>L</strong>anguage <strong>PDDL</strong>' at the Wilhelm-Schickard-Institut under the supervision of Alexandra Kirsch. Searching for an efficient way of writing PDDL domains and problems, I decided to create a PDDL package for the awesome <a href="http://www.sublimetext.com/">Sublime Text Editor</a>.</p>
 
 <p>If you have any questions, issues or ideas, please feel free to contact me. My email address is:</br><a href="mailto:volker.strobel87@gmail.com">volker.strobel87@gmail.com</a></p>
 <p>Related work:
@@ -90,15 +102,18 @@ Searching for an efficient way of writing PDDL domains and problems, I decided t
 	<li><a href="https://github.com/emacsmirror/pddl-mode/blob/master/pddl-mode.el">PDDL Mode</a> by Surendra K Singhi - an extension for <a href="http://www.gnu.org/software/emacs/">GNU Emacs</a> that supports PDDL 2.2</li>
 </p>
 </ul>
+
+<p>Stylesheet Switcher:</p>
+<!-- <input id="dimension-switch" type="checkbox" class="switch-small"> -->
+<a href="#" class="btn" id="simple">Simple</a>
+<a href="#" class="btn" id="red">Red</a>
+<a href="#" class="btn" id="blue">Blue</a>
 </div>
 <div class="col-md-3 col-md-offset-0">
 
 <img src="img/volker.jpg" id="me" class="img-responsive">
 
 </div>
-
-
-
 	</div>
 
 	<!-- Footer -->
@@ -127,14 +142,14 @@ Searching for an efficient way of writing PDDL domains and problems, I decided t
 
 			<div class="modal-body">
 				<h2>Please read before opening the editor</h2>
-				<p>The green link below will open the PDDL Online Editor so that you can see an example of the PDDL Syntax Highlighting. It was created with the <a href="http://ace.c9.io/">Ace code editor</a>. Simply paste in your code or write a new domain or problem from scratch. Although it is a fully functional code editor, the <a href="/sublime-pddl/download.html">Package for Sublime Text</a> has many additional features.</p>
+				<p>The green link below will open the PDDL Online Editor so that you can see an example of the PDDL Syntax Highlighting. It was created with the <a href="http://ace.c9.io/">Ace code editor</a>. Simply paste in your code or write a new domain or problem from scratch. Although it is a fully functional code editor, the <a href="http://pold87.github.io/myPDDL/download.html">Package for Sublime Text</a> has many additional features.</p>
 				<p>Important: The editor could take some time to load. However, if it is still not loaded after a longer period of time, please refresh the editor page and make sure that JavaScript is enabled in your browser.</p>
 
 			</div>
 
 			<div class="modal-footer">
 				<a class="btn btn-danger" data-dismiss ="modal">Go back</a>
-				<a href="/sublime-pddl/editor.html" class="btn btn-success">PDDL Online Editor</a>
+				<a href="http://pold87.github.io/myPDDL/editor.html" class="btn btn-success">PDDL Online Editor</a>
 
 			</div>
 
@@ -146,7 +161,11 @@ Searching for an efficient way of writing PDDL domains and problems, I decided t
 
 	<!-- JS Plugins -->
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/bootstrap-switch.js"></script>
 	<script src="js/bootstrap.js"></script>
+	<!-- Modal for editor -->
+	<script src="js/myScript.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,63 @@
+---
+layout: default
+title: PDDL
+---
+
+<h1>What is PDDL? A short PDDL tutorial</h1>
+
+<p>First of all, PDDL is a language for planning tasks and stands for Planning Domain Definition Language. Planning is about what to do and in which order for a given problem. In fact, PDDL is <em>the</em>standard language for Artificial Intelligence (AI) problems. There are several versions of PDDL, i.e. the language changes over time and new features are added. If this sounds cryptic to you, you'll get a better idea if you'll continue to read this tutorial. I think it's best to have an example. Let's imagine 
+
+In order to do something useful, you need another ... A planner is a programme that 
+</p>  
+
+Domain and problem files are simply plain text files, that means you can edit them in any text editor. However, as they can get really big and sometimes confusing, it is conventient to have a tool that supports you. And this is where the syntax highlighter comes in play. Nevertheless, I would be happy if you chose Sublime PDDL :) 
+
+Type in  (or copy, but I'd suggest that you type it, so you get a 'feeling' for the language and the brackets)
+
+<em>domain.pddl</em>
+<code>
+(define (domain pddl)
+
+	:definition
+
+	:example)
+</code>
+
+Double-check whether you really got the brackets right!
+
+Let's see what the different parts mean:
+<ul>
+	<li>(define ...: </li>
+
+</ul> 
+
+In the domain file, you'll find answers for the following questions:
+<ul>
+	<li>What actions be done? And further</li>
+		<ul>
+			<li>optional and not before PDDL</li>
+		</ul>
+	<li>What can be true?</li>
+	<li>What object types can exist?</li>
+</ul>
+
+<em>problem.pddl</em>
+<code>
+(define (problem pddl)
+
+	:definition
+
+	:example)
+</code>
+
+This is a very basic, yet "full" PDDL domain.  
+
+
+
+As you can probably see, PDDL resembles LISP (and therefore you'll need lots of brackets). Every 
+
+
+Further reading:
+
+<a href="http://en.wikipedia.org/wiki/Planning_Domain_Definition_Language">Wikipedia PDDL article</a>
+<a href="http://users.cecs.anu.edu.au/~patrik/pddlman/writing.html">Writing Planning Domains and Problems in PDDL</a>

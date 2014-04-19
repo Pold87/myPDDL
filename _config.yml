@@ -5,7 +5,7 @@ safe: true
 lsi: false
 source: /home/pold/Documents/pddl-site
 
-baseurl: "http://pold87.github.io/sublime-pddl"
+baseurl: "http://pold87.github.io/myPDDL"
 
 navigation:
  # - text: Blog
@@ -24,6 +24,9 @@ navigation:
    url:
    symbol: glyphicon glyphicon-edit
    options: data-toggle="modal" data-target="#myModal"
+ - text: PDDL
+   title: What is PDDL?
+   utl: /pddl.html
  - text: About
    title: About Me
    url: /about.html
