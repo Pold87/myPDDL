@@ -1,5 +1,5 @@
 {
-	"scope": "text.pddl",
+	"scope": "source.pddl",
 
 	"completions":
 	[

@@ -49,7 +49,7 @@ pddl_dir=$(readlink -f $3)
 
 # Image viewer for displaying type diagram (e.g. gimp, eog):
 # Use "auto" for displaying the diagram in a JFrame
-viewer=gimp
+viewer=auto
 
 # Revision control activated (yes or no)?
 revisioncontrol=yes
