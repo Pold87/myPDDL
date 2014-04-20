@@ -2,7 +2,7 @@
   <div class="container">
     <a href="index.html" class="navbar-brand">
       <span class="glyphicon glyphicon-home"></span>
-      Sublime PDDL - Syntax Highlighter and Snippets
+      myPDDL - Knowledge Engineering for PDDL
     </a>
     <button class="navbar-toggle" data-toggle ="collapse" data-target=".navHeaderCollapse">
       <span class="icon-bar"></span>
