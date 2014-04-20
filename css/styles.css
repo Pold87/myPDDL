@@ -2,10 +2,6 @@ html {
 	overflow-y:scroll;
 }
 
-a {
-    color: inherit;
-}
-
 body {
 	margin-bottom: 80px;
 }

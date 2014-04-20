@@ -3990,7 +3990,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
-  color: #ffffff;
+  color: #595959;
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
