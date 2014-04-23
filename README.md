@@ -125,4 +125,4 @@ After the application, the distances have been added in a new file (p01-location
        (distance pizza pizza 0.0))
 ```
 
-
+Volker Strobel - <volker.strobel87@gmail.com> - 2014 
