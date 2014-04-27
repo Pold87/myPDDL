@@ -651,7 +651,7 @@
 						</dict>
 						<dict>
 							<key>include</key>
-							<string>#durativ-action-keyword</string>
+							<string>#durative-action-keyword</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1383,10 +1383,6 @@
 						<dict>
 							<key>include</key>
 							<string>#metric</string>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>#length</string>
 						</dict>
 					</array>
 				</dict>

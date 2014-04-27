@@ -1,5 +1,0 @@
-[
-   { "caption": "myPDDL-diagram: Display Type Diagram", "command": "mypddl", "args": {"text": ["diagram"]}},
-   { "caption": "myPDDL-new: Create New Project", "command": "mypddl", "args": {"text": ["new"]}},
-   { "caption": "myPDDL-distance: Calculate Distances", "command": "mypddl", "args": {"text": ["distance"]}}
-]

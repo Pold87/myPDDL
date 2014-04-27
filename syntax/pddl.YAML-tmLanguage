@@ -451,7 +451,7 @@ repository:
           - include: '#variable'
           - include: '#pddl-expr'
           - include: '#comment'
-          - include: '#durativ-action-keyword'
+          - include: '#durative-action-keyword'
           - include: '#built-in-var'
           - include: '#any-sexpr'
 
@@ -510,7 +510,6 @@ repository:
         - include: '#objects'
         - include: '#goal'
         - include: '#metric'
-        - include: '#length'
 
   objects:
     patterns:
