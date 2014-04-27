@@ -8,5 +8,5 @@
     "pddl_project_folder": "~/Documents/myPDDL/",
 
     // Command for running Sublime Text (normally one of subl, sublime, sublime-text) 
-    "sublime_shell_cmd": "sublime-text"
+    "sublime_shell_cmd": "subl"
 }

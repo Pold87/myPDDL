@@ -48,7 +48,7 @@ You have to take a few more steps to enjoy all functionalities of myPDDL. I assu
 4. Open the file myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".
 5. Enjoy (in Sublime Text):
 
-    1. Create new projects -  open the command palette (*ctrl+shift+p*) and choose myPDDL-new. Specify the name for the project and press enter -> A new project structure with templates will be generated in your PDDL project directory (the project directory defaults to ~/Documents/myPDDL but you can choose a different folder by setting "pddl_project_folder": "~/Documents/myPDDL/". You should also customize the command for running Sublime Text (normally one of subl, sublime, sublime-text) "sublime_shell_cmd": "sublime-text"). 
+    1. Create new projects -  open the command palette (*ctrl+shift+p*) and choose myPDDL-new. Specify the name for the project and press enter -> A new project structure with templates will be generated in your PDDL project directory (the project directory defaults to ~/Documents/myPDDL but you can choose a different folder by setting "pddl_project_folder": "~/Documents/myPDDL/". You should also customize the command for running Sublime Text (normally one of subl, sublime, sublime-text) "sublime_shell_cmd": "subl"). 
     2. Switch to PDDL syntax highlighting: View -> Syntax -> PDDL  
     3. Use snippets: type domain and press *tab* -> a domain skeleton appears (you can find all snippets below)
     4. Display a PDDL type diagram: open the command palette (`ctrl`+`shift`+`p` and choose myPDDL-diagram)
