@@ -19,6 +19,7 @@ class MypddlThread(threading.Thread):
         self.file_name = file_name
         super(MypddlThread, self).__init__(self)
 
+
     # Run thread
     def run(self):
                 

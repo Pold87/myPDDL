@@ -4,6 +4,7 @@
     "detect_indentation": true,
 
     // Folder for PDDL projects
+
     "pddl_project_folder": "~/Documents/myPDDL/",
 
     // Command for running Sublime Text (normally one of subl, sublime, sublime-text) 
