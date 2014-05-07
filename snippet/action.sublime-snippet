@@ -3,7 +3,7 @@
 (:action ${1:action-name}
   :parameters (?${2:x} - ${3:object})
   :precondition (and ($4))
-  :effect (and ($5))
+  :effect (and ($5)))
 ]]></content>
 	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
 	<tabTrigger>action</tabTrigger>

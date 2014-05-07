@@ -7,3 +7,5 @@ problem="p01.pddl"
 
 # Plan!
 $($planner -o $domain -f $problem)
+
+$SHELL

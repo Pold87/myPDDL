@@ -138,6 +138,7 @@ repository:
           '1': {name: storage.type.pddl}
         end: '\)'
         patterns:
+        - include: '#comment'
         - name: keyword.other.pddl
           match:  :(?i:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs))\b
 
@@ -150,6 +151,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - name: meta.keyword.pddl
             captures:
               '1': {name: constant.character.pddl}
@@ -169,6 +171,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - name: meta.keyword.pddl
             captures:
               '1': {name: entity.name.function.pddl}
@@ -185,6 +188,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#variable'
           - include: '#either'
           - name: meta.name.function.pddl
@@ -200,6 +204,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#pddl-expr'
           - include: '#number'
           - include: '#init-predicate-other'
@@ -235,11 +240,12 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#variable'
           - include: '#pddl-expr'
           - include: '#applied-predicate-other'
 
-          
+
   function:
     patterns:
       - begin: '\(\s*((?:\w|-)+)'
@@ -249,6 +255,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#variable'
           - name: meta.name.function.pddl
             captures:
@@ -265,12 +272,13 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#variable'
           - name: meta.name.function.pddl
             captures:
               '1': {name: entity.name.function.pddl}
             match: '-\s+((?:\w|-)+)'
-      
+
   predicates:
     patterns:
       - comment: "Predicates"
@@ -298,6 +306,7 @@ repository:
          - include: '#applied-predicate'
          - include: '#predicate'
          - include: '#variable-list'
+         - include: '#pddl-expr'
          - include: '#any-sexpr'
 
 
@@ -309,12 +318,14 @@ repository:
         beginCaptures:
           '1': {name: string.unquoted.pddl}
         patterns:
+          - include: '#comment'
           - include: '#typed-variable-list'
           - include: '#variable'
           - include: '#connected-predicate'
           - include: '#applied-predicate'
           - include: '#number'
           - include: '#pddl-expr'
+          - include: '#any-sexpr'
 
   connected-predicate:
     patterns:
@@ -325,12 +336,14 @@ repository:
         beginCaptures:
           '1': {name: string.unquoted.pddl}
         patterns:
+          - include: '#comment'
           - include: '#typed-variable-list'
           - include: '#connected-predicate-other'
           - include: '#applied-predicate'
           - include: '#variable'
           - include: '#number'
           - include: '#pddl-expr'
+          - include: '#any-sexpr'
 
 
   functions:
@@ -342,6 +355,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#function'
           - begin: '\((either)'
             beginCaptures:      
@@ -359,6 +373,7 @@ repository:
           '2': {name: storage.type.pddl}
         patterns:
           - include: '#pddl-expr'
+          - include: '#comment'
         end: '\)'
 
   new-functions:
@@ -370,6 +385,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#either'
           - include: '#predicate'
           - include: '#pddl-expr'
@@ -379,6 +395,7 @@ repository:
     - begin: '\('
       end: '\)'
       patterns:
+        - include: '#comment'
         - include: '#variable'
 
   typed-variable-list:
@@ -388,6 +405,7 @@ repository:
         beginCaptures:
           '1': {name: keyword.other.pddl}
         patterns:
+          - include: '#comment'
           - include: '#variable'
           - name: meta.name.function.pddl
             captures:
@@ -406,7 +424,9 @@ repository:
       - begin: '\('
         end: '\)'
         patterns:
+          - include: '#comment'
           - include: '#any-sexpr-other'
+          - include: '#pddl-expr'
           - match:  (?:\s)*
 
   any-sexpr-other:
@@ -414,7 +434,9 @@ repository:
       - begin: '\('
         end: '\)'
         patterns:
+          - include: '#comment'
           - include: '#any-sexpr'
+          - include: '#pddl-expr'
           - match: (?:\s)*
 
   action:
@@ -539,6 +561,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#init-predicate'
           - include: '#connected-predicate'
           - include: '#any-sexpr'
@@ -552,6 +575,7 @@ repository:
         beginCaptures:
           '1': {name: storage.type.pddl}
         patterns:
+          - include: '#comment'
           - include: '#connected-predicate'
           - include: '#applied-predicate'
           - include: '#comment'
