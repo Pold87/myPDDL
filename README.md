@@ -1,11 +1,10 @@
 myPDDL - A Modular Knowledge Engineering Tool for PDDL
 =======================================================
 
-*View my [Project site](http://pold87.github.io/myPDDL/) for current developments and further information.*
-
 Accompanying paper:
-Strobel, V., & Kirsch, A. (2014). Planning in the Wild: Modeling Tools for PDDL. In KI 2014: Advances in Artificial Intelligence (pp. 273-284). Springer International Publishing.
 
+[Planning in the Wild: Modeling Tools for
+PDDL](http://link.springer.com/chapter/10.1007%2F978-3-319-11206-0_27)
 
 myPDDL is a highly customizable and extensible modular system,
 designed for supporting knowledge engineers in the process of writing,
