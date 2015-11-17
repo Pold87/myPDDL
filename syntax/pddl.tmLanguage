@@ -270,7 +270,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=||\&lt;|\&gt;|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
+					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|\&lt;|\&gt;|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -333,7 +333,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|\&lt;|\&gt;|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
+					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|\&lt;|\&gt;|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s*</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>

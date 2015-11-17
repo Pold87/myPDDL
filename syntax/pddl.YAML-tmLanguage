@@ -315,7 +315,7 @@ repository:
   connected-predicate-other:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
-        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|\<|\>|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|\<|\>|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s*'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
@@ -334,7 +334,7 @@ repository:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
         name: meta.type.pddl
-        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=||\<|\>|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|\<|\>|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s*'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
