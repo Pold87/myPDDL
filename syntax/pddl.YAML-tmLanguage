@@ -68,17 +68,6 @@ repository:
     match: (assign|scale-up|scale-down|increase|decrease)
 
 
-
-  other-keyword:
-    name: support.other.pddl
-    comment: "Remove parent or do sth that the paren isn't highlighted"
-    match: \b(forall|(at\s+(start|end))|over)\b
-
-
-  language-constant:
-    name: constant.language.pddl
-    match: (start|end|all)
-
   action-keyword:
     name: keyword.operator.pddl
     match: ':(?i:(parameters|vars|precondition|effect))(?!:|\?)\b'
@@ -309,16 +298,30 @@ repository:
          - include: '#pddl-expr'
          - include: '#any-sexpr'
 
+  times:
+    patterns:
+      - begin: '\((forall|(at(\s+(start|end)))|over(\s+all)?)\s*'
+        end: '\)'
+        beginCaptures:
+          '1': {name: entity.name.function.pddl} 
+        patterns:
+          - include: '#comment'
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#pddl-expr'
+          - include: '#any-sexpr'
+
 
   connected-predicate-other:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
-        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|\<|\>|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
         patterns:
           - include: '#comment'
+          - include: '#times'
           - include: '#typed-variable-list'
           - include: '#variable'
           - include: '#connected-predicate'
@@ -331,12 +334,13 @@ repository:
     patterns:
       - comment: "Predicates that are connected via and, or, etc."
         name: meta.type.pddl
-        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
+        begin: '\((and|or|eq|neq|not|\=|\>\=|\<\=||\<|\>|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+'
         end: '\)'
         beginCaptures:
           '1': {name: string.unquoted.pddl}
         patterns:
           - include: '#comment'
+          - include: '#times' 
           - include: '#typed-variable-list'
           - include: '#connected-predicate-other'
           - include: '#applied-predicate'

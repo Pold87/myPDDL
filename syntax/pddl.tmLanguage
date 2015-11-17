@@ -270,7 +270,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
+					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=||\&lt;|\&gt;|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -290,6 +290,10 @@
 						<dict>
 							<key>include</key>
 							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#times</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -329,7 +333,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
+					<string>\((and|or|eq|neq|not|\=|\&gt;\=|\&lt;\=|\&lt;|\&gt;|assign|increase|decrease|scale-up|scale-down|forall|exists|imply|when|\+|-|\*|/)\s+</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>1</key>
@@ -347,6 +351,10 @@
 						<dict>
 							<key>include</key>
 							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#times</string>
 						</dict>
 						<dict>
 							<key>include</key>
@@ -1109,13 +1117,6 @@
 				</dict>
 			</array>
 		</dict>
-		<key>language-constant</key>
-		<dict>
-			<key>match</key>
-			<string>(start|end|all)</string>
-			<key>name</key>
-			<string>constant.language.pddl</string>
-		</dict>
 		<key>metric</key>
 		<dict>
 			<key>patterns</key>
@@ -1283,15 +1284,6 @@
 			<string>(minimize|maximize)</string>
 			<key>name</key>
 			<string>keyword.other.pddl</string>
-		</dict>
-		<key>other-keyword</key>
-		<dict>
-			<key>comment</key>
-			<string>Remove parent or do sth that the paren isn't highlighted</string>
-			<key>match</key>
-			<string>\b(forall|(at\s+(start|end))|over)\b</string>
-			<key>name</key>
-			<string>support.other.pddl</string>
 		</dict>
 		<key>pddl-expr</key>
 		<dict>
@@ -1541,6 +1533,49 @@
 							<string>:(?i:(strips|typing|negative-preconditions|disjunctive-preconditions|equality|existential-preconditions|universal-preconditions|quantified-preconditions|conditional-effects|fluents|numeric-fluents|object-fluents|adl|durative-actions|duration-inequalities|continuous-effects|derived-predicates|timed-initial-literals|preferences|constraints|action-costs))\b</string>
 							<key>name</key>
 							<string>keyword.other.pddl</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>times</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\((forall|(at(\s+(start|end)))|over(\s+all)?)\s*</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.function.pddl</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\)</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#connected-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#applied-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#pddl-expr</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
 						</dict>
 					</array>
 				</dict>
