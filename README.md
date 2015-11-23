@@ -1,10 +1,12 @@
 myPDDL - A Modular Knowledge Engineering Tool for PDDL
 =======================================================
 
-Accompanying paper:
+Download accompanying paper:
 
 [Planning in the Wild: Modeling Tools for
-PDDL](http://link.springer.com/chapter/10.1007%2F978-3-319-11206-0_27)
+PDDL](https://raw.githubusercontent.com/Pold87/myPDDL/master/mypddl.pdf). The
+final publication is available at Springer via
+[http://dx.doi.org/10.1007/978-3-319-11206-0_27](http://dx.doi.org/10.1007/978-3-319-11206-0_27).
 
 myPDDL is a highly customizable and extensible modular system,
 designed for supporting knowledge engineers in the process of writing,
