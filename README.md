@@ -1,6 +1,9 @@
 myPDDL - A Modular Knowledge Engineering Tool for PDDL
 =======================================================
 
+[![Join the chat at
+https://gitter.im/Pold87/myPDDL](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Pold87/myPDDL?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Download accompanying paper:
 
 [Planning in the Wild: Modeling Tools for
