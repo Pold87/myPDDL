@@ -3,7 +3,7 @@ markdown: redcarpet
 pygments: true
 safe: true
 lsi: false
-source: /home/pold/Documents/pddl-site
+source: /home/pold/Documents/myPDDL/
 
 baseurl: "http://pold87.github.io/myPDDL"
 
