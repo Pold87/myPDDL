@@ -1,0 +1,166 @@
+/*----------------------------------------------------------------------------
+	colorscheme.css for colorscheme 5
+
+	this css-file contains all definitions, that depend on the colorscheme.
+
+	(c) Schlund + Partner AG
+----------------------------------------------------------------------------*/
+
+/*-- main container --------------------------------------------------------*/
+
+#container {
+    /*background : url(images/static/contentbg.gif) repeat-y 50% 50%;*/
+
+}
+
+#bg_submenu {
+    background-image: url(images/static/bg_submenu.jpg);
+}
+
+#bg_submenu_b {
+    background-image: url(images/static/bg_submenu_b.jpg);
+}
+
+#submenu_b {
+    background-image: url(images/static/bg_subnav_b.jpg);
+}
+
+#submenu_t {
+    background-image: url(images/static/bg_subnav_t.jpg);
+}
+
+/*--- header ---------------------------------------------------------------*/
+
+#header {
+    /*background : url(images/static/bg_header.jpg) no-repeat;*/
+
+}
+
+/*--- main navigation ------------------------------------------------------*/
+
+#main_nav_container {
+    background: repeat-x;
+    /*background-image: url(images/static/bg_menu.jpg);*/
+    /*background-color: #247096;*/
+
+}
+
+/*--- key visiual ----------------------------------------------------------*/
+
+#key_visual {
+    background: no-repeat;
+}
+
+/*--- logo -----------------------------------------------------------------*/
+
+/*--- caption --------------------------------------------------------------*/
+
+#slogan {
+    /*background: url(images/static/hbg.gif) no-repeat;*/
+
+}
+
+/*--- main navigation ------------------------------------------------------*/
+
+/*--- main navigation items ------------------------------------------------*/
+
+/*--- subnavigation items --------------------------------------------------*/
+
+/*--- footer ---------------------------------------------------------------*/
+
+#footer {
+    /*background: transparent url(images/static/footerbg.gif) top left no-repeat;*/
+
+    background-color: #eeeeee;
+}
+
+/*----------------------------------------------------------------------------
+  default-styles for html-elements
+----------------------------------------------------------------------------*/
+
+/*--- body -----------------------------------------------------------------*/
+
+body#main_body {
+    background-color: #FFFFFF;
+    color: #151515;
+    /*background : #e1dbda url(images/static/pgbk.gif) repeat-x;*/
+
+}
+
+/*--- paragraph ------------------------------------------------------------*/
+
+.content {
+    color: #151515;
+}
+
+.content table {
+    color: #151515;
+    border-color: #434343;
+}
+
+.content select {
+    color: #151515;
+}
+
+.content input {
+    color: #151515;
+    border-color: #b4b8bb;
+}
+
+.content textarea {
+    color: #151515;
+    border-color: #b4b8bb;
+}
+
+/*--- headings -------------------------------------------------------------*/
+
+/*--- links ----------------------------------------------------------------*/
+
+.content a {
+    color: #e70c0c;
+}
+
+/*--- tables ---------------------------------------------------------------*/
+
+.content td {
+    border-color: #434343;
+}
+
+.content th {
+    border-color: #434343;
+    color: #ffffff;
+    background-color: #434343;
+}
+
+.content tr.odd {
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.content tr.even {
+    color: #000000;
+    background-color: #eeeeee;
+}
+
+/*--- forms ----------------------------------------------------------------*/
+
+.content fieldset {
+    border-color: #970f1f;
+}
+
+.content legend {
+    color: #970f1f;
+}
+
+.content label {
+    color: #1e1e1e;
+}
+
+.content #submit {
+    background-color: #f4f4f4;
+    border-color: #b4b8bb;
+    color: #74777a;
+}
+
+/*--------------------------------------------------------------------------*/
+

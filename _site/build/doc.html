@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Doc |  PDDL</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="custom/custom-bootstrap_simple.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-switch.css">
+
+	<!-- Google Analytics -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+  Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-47110772-1', 'pold87.github.io');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+	<!-- Navigation bar -->
+	<div class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <a href="index.html" class="navbar-brand">
+      <span class="glyphicon glyphicon-home"></span>
+      myPDDL - Knowledge Engineering for PDDL
+    </a>
+    <button class="navbar-toggle" data-toggle ="collapse" data-target=".navHeaderCollapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="collapse navbar-collapse navHeaderCollapse">
+      
+  <ul class="navigation nav navbar-nav navbar-right">
+    
+      
+      
+
+      <li class="first  ">
+
+        <a class="" href="http://pold87.github.io/myPDDL/download.html" title="Download lastest Version of PDDL Syntax Highlighter" ><span class="glyphicon glyphicon-circle-arrow-down"></span> Download</a>
+      </li>
+    
+      
+      
+        
+      
+
+      <li class=" active ">
+
+        <a class="active" href="http://pold87.github.io/myPDDL/doc.html" title="Read the Manual" ><span class="glyphicon glyphicon-file"></span> Doc</a>
+      </li>
+    
+      
+      
+
+      <li class="  ">
+
+        <a class="" href='#' title="Open the PDDL Online Editor" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-edit"></span> Online Editor</a>
+      </li>
+    
+      
+      
+
+      <li class="  last">
+
+        <a class="" href="http://pold87.github.io/myPDDL/about.html" title="About Me" ><span class="glyphicon glyphicon-globe"></span> About</a>
+      </li>
+    
+  </ul>
+
+    </div>
+  </div>
+</div>
+
+
+	<!-- Content -->
+	<div class="container center">
+		<h1>myPDDL - A Modular Knowledge Engineering Tool for PDDL</h1>
+
+<p>myPDDL is a highly customizable and extensible modular system,<br>
+  designed for supporting knowledge engineers in the process of writing,<br>
+  analyzing and expanding PDDL files and thereby promoting the<br>
+  collaboration between knowledge engineers and the use of PDDL in<br>
+  real-world applications. It consists of the following integral parts:</p>
+
+<ul>
+  <li>
+    <em>myPDDL-new</em>: Create a myPDDL project folder structure with PDDL
+    domain and problem skeletons.</li>
+  <li>
+    <em>myPDDL-syntax</em>: A context-aware syntax highlighting feature.</li>
+  <li>
+    <em>myPDDL-snippet</em>: Code snippets (templates), which can be inserted
+    in myPDDL files.</li>
+  <li>
+    <em>myPDDL-distance</em>: Automated distance calculation for PDDL
+    locations, specified in a problem file.</li>
+  <li>
+    <em>myPDDL-diagram</em>: A type diagram generator for analyzing the
+    structure of myPDDL type hierarchies.</li>
+  <li>
+    <em>myPDDL-IDE</em>: An integrated development environment for the use
+    of myPDDL in Sublime Text.</li>
+</ul>
+<h2>PDDL Video Introduction</h2>
+  <p>If you are new to PDDL, you can watch a video introduction series on
+  YouTube (in German):</br>
+    <a href="http://www.youtube.com/playlist?list=PL3CZzLUZuiIMWEfJxy-G6OxYVzUrvjwuV">PDDL
+    Video Introduction in German</a>
+</p>
+
+<h2>Supported file types</h2>
+
+<ul>
+  <li>.pddl</li>
+</ul><h2>Installation</h2>
+
+<p>Simply place this repository into your Sublime text packages folder (Preferences -&gt; Browse Packages...). You have three possibilities to do so:</p>
+
+<ul>
+  <li>Via Sublime Text Package Control (search for myPDDL) (RECOMMENDED!)</li>
+  <li>
+    <em>git clone <a href="https://github.com/Pold87/myPDDL.git">https://github.com/Pold87/myPDDL.git</a> myPDDL</em> </li>
+  <li>Download the ZIP and unzip it to your packages folder.</li>
+</ul><h2>IMPORTANT</h2>
+
+<p>You have to take a few more steps to enjoy all functionalities of myPDDL. I assume you are using Linux:</p>
+
+<ol>
+  <li>Go to the Sublime Text Packages folder (Preferences -&gt; Browse Packages ...) and change to the myPDDL folder.</li>
+  <li>Ensure that the file myPDDL (inside the folder myPDDL) is executable (type <code>chmod a+x myPDDL</code> in your shell).</li>
+  <li><p>Place the file myPDDL somewhere on your $PATH (e.g. ~/bin) or add the folder myPDDL to your $PATH (e.g. add <code>export PATH=$PATH:~/.config/sublime-text-2/Packages/myPDDL</code> to your .bashrc).</p></li>
+  <li><p>Open the file myPDDL in a text editor and customize it: While most options are for advanced users can should set the variable "path" to match the corresponding myPDDL folder. The default is probably right for you: "~/.config/sublime-text-2/Packages/myPDDL".</p></li>
+  <li>
+    <p>Enjoy (in Sublime Text):</p>
+
+    <ol>
+      <li>Create new projects -  open the command palette (<em>ctrl+shift+p</em>) and choose myPDDL-new. Specify the name for the project and press enter -&gt; A new project structure with templates will be generated in your PDDL project directory (the project directory defaults to ~/Documents/myPDDL but you can choose a different folder in the file myPDDL.py - simply customize the variable "PDDL_project_root_folder"). </li>
+      <li>Switch to PDDL syntax highlighting: View -&gt; Syntax -&gt; PDDL<br>
+      </li>
+      <li>Use snippets: type domain and press <em>tab</em> -&gt; a domain skeleton appears (you can find all snippets below)</li>
+      <li>Display a PDDL type diagram: open the command palette (<code>ctrl</code>+<code>shift</code>+<code>p</code> and choose myPDDL-diagram)</li>
+      <li>Calculate distances between PDDL predicates in a problem file specified by a predicate 'location' (you can choose a different name for this predicate in the myPDDL (NOT myPDDL.py) file in your $PATH). </li>
+    </ol>
+  </li>
+</ol><h3>Customization</h3>
+
+<p>You can customize almost anything. Use a different image viewer by changing the variable "viewer" in the myPDDL file on your $PATH or customize the templates for the domain files of myPDDL-new (in the folder templates). </p>
+
+<h3>Usage</h3>
+
+<p>You can also use myPDDL via a command-interface (type <code>myPDDL</code> in a shell to see further information).</p>
+
+<h3>Use Snippets</h3>
+
+<p>This package contains some often used PDDL constructs. Try one of the following, to see how they work:</p>
+
+<ul>
+  <li>template: <code>domain</code>, <code>problem</code>
+  </li>
+  <li>types: <code>t1</code>, <code>t2</code>, <code>t3</code>, etc.</li>
+  <li>predicates: <code>p1</code>, <code>p2</code>, <code>p3</code>, etc.</li>
+  <li>functions: <code>f1</code>, <code>f2</code>, <code>f3</code>, etc.</li>
+  <li>action: <code>action</code>, <code>durative-action</code>
+  </li>
+</ul><h2>Examples</h2>
+
+<h3>Create PDDL Projects (myPDDL-new)</h3>
+
+<p>Within the project folder, the domain file domain.pddl and
+  the problem file p01.pddl (within the folder
+  problems/) initially contain corresponding PDDL skeletons
+  which can also be also customized. Additionally the project name is
+  used as the domain name within the files domain.pddl and p01.pddl.</p>
+
+<h3>Syntax Highlighting (myPDDL-syntax)</h3>
+
+<p><a href="https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/coffee_errors_img.png" target="_blank"><img src="https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/coffee_errors_img.png" alt="alt&lt;br&gt;
+                                                                                                                                                                                                                         text" title="PDDL syntax highlighting - Theme: Monokai" style="max-width:100%;"></a></p>
+
+<p>A deliberately erroneous domain. Constructs not specified by PDDL are not highlighted.</p>
+
+<h3>Type Diagram Generation (myPDDL-diagram)</h3>
+
+<p><a href="https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/diagram.png" target="_blank"><img src="https://raw.githubusercontent.com/Pold87/myPDDL/master/examples/diagram.png" alt="alt&lt;br&gt;
+                                                                                                                                                                                                     text" title="An automatically generated type diagram of the Hacker World using&lt;br&gt;
+                                                                                                                                                                                                                  myPDDL-diagram" style="max-width:100%;"></a></p>
+
+<p>Automatically generated type diagram of
+    the <a href="https://github.com/Pold87/myPDDL/blob/master/examples/hacker-world.pddl">Hacker
+    World</a></p>
+
+<p>Every time myPDDL-diagram is invoked, the names of the saved files are
+  extended by an ascending revision number. Thus, one cannot only
+  identify associated PDDL and diagram files, but also use this feature
+  for basic revision control.</p>
+
+<h3>Distance Calculation (myPDDL-distance)</h3>
+
+<p>Before using the calculator the problem file looks like this (p01.pddl):</p>
+
+<pre><code>(:init ...
+    (location gary 4 2)
+    (location pizza 2 3))
+</code></pre>
+
+<p>After the application, the distances have been added in a new file (p01-location.pddl):</p>
+
+<pre><code>(:init ...
+    (location gary 4 2)
+    (location pizza 2 3)
+    (distance gary gary 0.0)
+    (distance gary pizza 2.2361)
+    (distance pizza gary 2.2361)
+    (distance pizza pizza 0.0))
+</code></pre>
+
+
+<!-- Disqus Plugin for discussion and comments -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'sublimepddl'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+        	var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        	dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+	</div>
+
+	<!-- Footer -->
+	<!-- 	<div class="navbar navbar-default navbar-fixed-bottom">
+		
+		<div class="container">
+			<p class="navbar-text pull-left">By
+				<a href="about.html">Volker Strobel</a></p>
+				<a href="https://github.com/Pold87/sublime-pddl" class="navbar-btn btn btn-primary pull-right">View Project on GitHub</a>
+			</div>
+
+		</div> -->
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="PDDL Online Editor" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Important - PDDL Online
+				Editor</h4>
+			</div>
+			<div class="modal-body">
+				<h2>Please read before opening the editor</h2>
+				<p>The green link below will open the
+				PDDL Online Editor so that you can see
+				an example of the PDDL Syntax
+				Highlighting. It was created with
+				the <a href="http://ace.c9.io/">Ace
+				code editor</a>. Simply paste in your
+				code or write a new domain or problem
+				from scratch. Although it is a fully
+				functional code editor,
+				<a href="http://pold87.github.io/myPDDL/download.html">myPDDL</a> has many
+				additional features.</p>
+				<p>Important: The editor could take
+				some time to load. However, if it is
+				still not loaded after a longer period
+				of time, please refresh the editor
+				page and make sure that JavaScript is
+				enabled in your browser.</p>
+			</div>
+			<div class="modal-footer">
+				<a class="btn btn-danger" data-dismiss
+				="modal">Go back</a>
+				<a href="http://pold87.github.io/myPDDL/editor.html" class="btn
+				btn-success">PDDL Online Editor</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+	<!-- JS Plugins -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="js/bootstrap-switch.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<!-- Modal for editor -->
+	<script src="js/myScript.js"></script>
+
+</body>
+</html>
