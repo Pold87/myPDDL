@@ -562,6 +562,14 @@
 						</dict>
 						<dict>
 							<key>include</key>
+							<string>#process</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#event</string>
+						</dict>
+						<dict>
+							<key>include</key>
 							<string>#durative-action</string>
 						</dict>
 						<dict>
@@ -772,6 +780,69 @@
 			</dict>
 			<key>match</key>
 			<string>\s*((?:\w+|\?|_|-|\.))\s*</string>
+		</dict>
+		<key>event</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(\s*(?i:(:event))\b</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Event</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.type.pddl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#connected-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#applied-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#typed-variable-list</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#built-in-var</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
 		</dict>
 		<key>function</key>
 		<dict>
@@ -1496,6 +1567,69 @@
 						<dict>
 							<key>include</key>
 							<string>#pddl-expr</string>
+						</dict>
+					</array>
+				</dict>
+			</array>
+		</dict>
+		<key>process</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>begin</key>
+					<string>\(\s*(?i:(:process))\b</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>storage.type.pddl</string>
+						</dict>
+					</dict>
+					<key>comment</key>
+					<string>Process</string>
+					<key>end</key>
+					<string>\)</string>
+					<key>name</key>
+					<string>meta.type.pddl</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#connected-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#applied-predicate</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action-name</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#comment</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#typed-variable-list</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#variable</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#action-keyword</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#built-in-var</string>
+						</dict>
+						<dict>
+							<key>include</key>
+							<string>#any-sexpr</string>
 						</dict>
 					</array>
 				</dict>

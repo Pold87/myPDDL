@@ -100,6 +100,8 @@ repository:
         - include: '#derived'
         - include: '#new-functions'
         - include: '#action'
+        - include: '#process'
+        - include: '#event'
         - include: '#durative-action'
         - include: '#any-sexpr'
 
@@ -448,6 +450,44 @@ repository:
       - comment: "Action"
         name: meta.type.pddl
         begin: '\(\s*(?i:(:action))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#action-name'
+          - include: '#comment'
+          - include: '#typed-variable-list'
+          - include: '#variable'
+          - include: '#action-keyword'
+          - include: '#built-in-var'
+          - include: '#any-sexpr'
+
+  process:
+    patterns:
+      - comment: "Process"
+        name: meta.type.pddl
+        begin: '\(\s*(?i:(:process))\b'
+        end: '\)'
+        beginCaptures:
+          '1': {name: storage.type.pddl}
+        patterns:
+          - include: '#connected-predicate'
+          - include: '#applied-predicate'
+          - include: '#action-name'
+          - include: '#comment'
+          - include: '#typed-variable-list'
+          - include: '#variable'
+          - include: '#action-keyword'
+          - include: '#built-in-var'
+          - include: '#any-sexpr'
+
+  event:
+    patterns:
+      - comment: "Event"
+        name: meta.type.pddl
+        begin: '\(\s*(?i:(:event))\b'
         end: '\)'
         beginCaptures:
           '1': {name: storage.type.pddl}
