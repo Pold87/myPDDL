@@ -37,6 +37,11 @@ Supported file types
 Installation
 ------------
 
+Requirements:
+- Graphviz (command line tool `dot`)
+- Java
+- ...
+
 Simply place this repository into your Sublime text packages folder (Preferences \-\> Browse Packages...). You have three possibilities to do so:
 - Via Sublime Text Package Control (search for myPDDL) (RECOMMENDED!)
 - *git clone https://github.com/Pold87/myPDDL.git myPDDL* 
